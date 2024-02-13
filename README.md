@@ -17,6 +17,9 @@ This code uses the halo model and HODs to model the power- and bispectra of gala
 ### Prerequisites
 * **python3**: This code will not work for python2! 
 * **pyccl**: Check <a href="https://ccl.readthedocs.io/en/latest/"> here </a> for how to install it
+* **numpy**
+* **scipy**
+* For example notebooks: **matplotlib**
 
 ### Installation
 
