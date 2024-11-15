@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 from scipy.special import sici
 import scipy.integrate as integrate
 
+epsrel=1e-4
+
+N=int(256)
 
 class halomodel:
 
@@ -276,7 +279,7 @@ class halomodel:
 
         kernel = lambda m: (Nc(m) + Ns(m)) * self.dndm(m, z)
 
-        return integrate.quad(kernel, mmin, mmax)[0]
+        return np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
     def lens_lens_ps_1h(self, ks, z, type1=1, type2=2, mmin=1e10, mmax=1e17):
         """ 1-halo term of Lens-Lens Powerspectrum (not normalized by number density!)
@@ -296,7 +299,7 @@ class halomodel:
         for k in ks:
             kernel = lambda m: self.G_ab(k, k, m, z, type1, type2) * self.dndm(m, z)
 
-            integral.append(integrate.quad(kernel, mmin, mmax)[0])
+            integral.append(np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N)))
 
         integral = np.array(integral)
         return integral
@@ -321,7 +324,7 @@ class halomodel:
             kernel = (
                 lambda m: self.G_a(k, m, z, type1) * self.dndm(m, z) * self.bh(m, z)
             )
-            integral1.append(integrate.quad(kernel, mmin, mmax)[0])
+            integral1.append(np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N)))
 
         integral1 = np.array(integral1)
 
@@ -334,7 +337,7 @@ class halomodel:
                 kernel = (
                     lambda m: self.G_a(k, m, z, type2) * self.dndm(m, z) * self.bh(m, z)
                 )
-                integral2.append(integrate.quad(kernel, mmin, mmax)[0])
+                integral2.append(np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N)))
             integral2 = np.array(integral2)
 
         return integral1 * integral2 * self.pk_lin(ks, z)
@@ -387,7 +390,7 @@ class halomodel:
                 * m
                 * self.u_NFW(k, m, z, 1.0)
             )
-            integral.append(integrate.quad(kernel, mmin, mmax)[0])
+            integral.append(np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N)))
 
         integral = np.array(integral)
         return integral
@@ -409,13 +412,13 @@ class halomodel:
         integral1 = []
         for k in ks:
             kernel = lambda m: self.G_a(k, m, z, type) * self.dndm(m, z) * self.bh(m, z)
-            integral1.append(integrate.quad(kernel, mmin, mmax)[0])
+            integral1.append(np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N)))
         integral1 = np.array(integral1)
 
         integral2 = []
         for k in ks:
             kernel = lambda m: self.u_NFW(k, m, z, 1.0) * self.dndm(m, z) * m
-            integral2.append(integrate.quad(kernel, mmin, mmax)[0])
+            integral2.append(np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N)))
         integral2 = np.array(integral2)
 
         rho_bar = ccl.rho_x(self.cosmo, 1 / (1 + z), "matter")
@@ -463,7 +466,7 @@ class halomodel:
         integral = []
         for k in ks:
             kernel = lambda m: self.dndm(m, z) * m * m * (self.u_NFW(k, m, z)) ** 2
-            integral.append(integrate.quad(kernel, mmin, mmax, limit=100)[0])
+            integral.append(np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N)))
 
         integral = np.array(integral)
         return integral
@@ -484,7 +487,7 @@ class halomodel:
 
         for k in ks:
             kernel = lambda m: self.u_NFW(k, m, z) * self.dndm(m, z) * m * self.bh(m, z)
-            integral.append(integrate.quad(kernel, mmin, mmax)[0])
+            integral.append(np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N)))
 
         integral = np.array(integral)
         rho_bar = ccl.rho_x(self.cosmo, 1 / (1 + z), "matter")
@@ -503,7 +506,7 @@ class halomodel:
             mmax (float, optional): Maximal halo mass for integral [Msun]. Defaults to 1e17
         """
         kernel_A = lambda m: self.dndm(m, z) * self.bh(m, z) * m
-        A = integrate.quad(kernel_A, mmin, mmax)[0]
+        A = integrate.quad(kernel_A, mmin, mmax, epsrel=epsrel)[0]
         return A
 
     def source_source_ps(self, ks, z):
@@ -546,7 +549,7 @@ class halomodel:
             * self.u_NFW(k1, m, z, 1.0)
             * self.G_ab(k2, k3, m, z, type1, type2)
         )
-        integral = integrate.quad(kernel, mmin, mmax)[0]
+        integral = np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         return integral
 
@@ -568,19 +571,19 @@ class halomodel:
         kernel = (
             lambda m: self.dndm(m, z) * self.u_NFW(k1, m, z, 1.0) * m * self.bh(m, z)
         )
-        summand1 = integrate.quad(kernel, mmin, mmax)[0]
+        summand1 = np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         kernel = (
             lambda m: self.dndm(m, z)
             * self.G_ab(k2, k3, m, z, type1, type2)
             * self.bh(m, z)
         )
-        summand1 *= integrate.quad(kernel, mmin, mmax)[0]
+        summand1 *= np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         summand1 *= self.pk_lin(k3, z)
 
         kernel = lambda m: self.dndm(m, z) * self.G_a(k2, m, z, type1) * self.bh(m, z)
-        summand2 = integrate.quad(kernel, mmin, mmax)[0]
+        summand2 = np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         kernel = (
             lambda m: self.dndm(m, z)
@@ -589,12 +592,12 @@ class halomodel:
             * self.u_NFW(k1, m, z)
             * self.bh(m, z)
         )
-        summand2 *= integrate.quad(kernel, mmin, mmax)[0]
+        summand2 *= np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         summand2 *= self.pk_lin(k1, z)
 
         kernel = lambda m: self.dndm(m, z) * self.G_a(k3, m, z, type2) * self.bh(m, z)
-        summand3 = integrate.quad(kernel, mmin, mmax)[0]
+        summand3 = np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         kernel = (
             lambda m: self.dndm(m, z)
@@ -603,7 +606,7 @@ class halomodel:
             * self.u_NFW(k1, m, z)
             * self.bh(m, z)
         )
-        summand3 *= integrate.quad(kernel, mmin, mmax)[0]
+        summand3 *= np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         summand3 *= self.pk_lin(k2, z)
 
@@ -625,13 +628,13 @@ class halomodel:
             mmax (float, optional): Maximal halo mass for integral [Msun]. Defaults to 1e17.
         """
         kernel = lambda m: self.dndm(m, z) * self.G_a(k2, m, z, type1) * self.bh(m, z)
-        integral = integrate.quad(kernel, mmin, mmax)[0]
+        integral = np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         kernel = lambda m: self.dndm(m, z) * self.G_a(k3, m, z, type2) * self.bh(m, z)
-        integral *= integrate.quad(kernel, mmin, mmax)[0]
+        integral *= np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         kernel = lambda m: self.dndm(m, z) * m * self.u_NFW(k1, m, z)
-        integral *= integrate.quad(kernel, mmin, mmax)[0]
+        integral *= np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         return integral * self.bk_lin(k1, k2, k3, z)
 
@@ -709,7 +712,7 @@ class halomodel:
             * self.u_NFW(k1, m, z)
             * self.u_NFW(k2, m, z)
         )
-        integral = integrate.quad(kernel, mmin, mmax)[0]
+        integral = np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         return integral
 
@@ -727,7 +730,7 @@ class halomodel:
         """
 
         kernel = lambda m: self.dndm(m, z) * self.G_a(k3, m, type) * self.bh(m, z)
-        summand1 = integrate.quad(kernel, mmin, mmax)[0]
+        summand1 = np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         kernel = (
             lambda m: self.dndm(m, z)
@@ -737,12 +740,12 @@ class halomodel:
             * self.u_NFW(k2, m, z)
             * self.bh(m, z)
         )
-        summand1 *= integrate.quad(kernel, mmin, mmax)[0]
+        summand1 *= np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         summand1 *= self.pk_lin(k3, z)
 
         kernel = lambda m: self.dndm(m, z) * m * self.u_NFW(k1, m, z) * self.bh(m, z)
-        summand2 = integrate.quad(kernel, mmin, mmax)[0]
+        summand2 = np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         kernel = (
             lambda m: self.dndm(m, z)
@@ -751,12 +754,12 @@ class halomodel:
             * self.G_a(k3, m, z, type)
             * self.bh(m, z)
         )
-        summand2 *= integrate.quad(kernel, mmin, mmax)[0]
+        summand2 *= np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         summand2 *= self.pk_lin(k1, z)
 
         kernel = lambda m: self.dndm(m, z) * m * self.u_NFW(k2, m, z) * self.bh(m, z)
-        summand3 = integrate.quad(kernel, mmin, mmax)[0]
+        summand3 = np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         kernel = (
             lambda m: self.dndm(m, z)
@@ -766,12 +769,13 @@ class halomodel:
             * self.bh(m, z)
         )
 
-        summand3 *= integrate.quad(kernel, mmin, mmax)[0]
+        summand3 *= np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         summand3 *= self.pk_lin(k2, z)
 
         return summand1 + summand2 + summand3
 
+    #@njit(parallel=True)
     def source_source_lens_bs_3h(self, k1, k2, k3, z, type=1, mmin=1e10, mmax=1e17):
         """3-halo term of Source-Source-Lens Bispectrum (not normalized by number density!)
 
@@ -785,13 +789,13 @@ class halomodel:
             mmax (float, optional): Maximal halo mass for integral [Msun]. Defaults to 1e17.
         """
         kernel = lambda m: self.dndm(m, z) * self.G_a(k3, m, z, type) * self.bh(m, z)
-        integral = integrate.quad(kernel, mmin, mmax)[0]
+        integral = np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         kernel = lambda m: self.dndm(m, z) * m * self.u_NFW(k1, m, z) * self.bh(m, z)
-        integral *= integrate.quad(kernel, mmin, mmax)[0]
+        integral *= np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         kernel = lambda m: self.dndm(m, z) * m * self.u_NFW(k2, m, z) * self.bh(m, z)
-        integral *= integrate.quad(kernel, mmin, mmax)[0]
+        integral *= np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
 
         return integral * self.bk_lin(k1, k2, k3, z)
 
