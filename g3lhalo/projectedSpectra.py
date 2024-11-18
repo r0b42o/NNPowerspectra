@@ -48,15 +48,29 @@ class projectedSpectra:
     def set_lensing_efficiency(self):
         """ Calculates lensing efficiency for given source redshift distribution
         """
+        n_redshift_bins=len(self.zs)
+        dz=(self.zs[-1]-self.zs[0])/n_redshift_bins
+
         self.gs = np.zeros_like(self.zs)
 
-        for i, z in enumerate(self.zs):
-            for j, zprime in enumerate(self.zs):
-                if zprime >= z:
-                    self.gs[i] += self.n_s(zprime)*(self.ws[j]-self.ws[i])/self.ws[j]*self.deltaZs[j]
+        nz=self.n_s(self.zs)
+
+        w_inv=1.0/self.ws
+
+        for j in range(n_redshift_bins):
+            w_diff=self.ws[j:] - self.ws[j]
+            nz_znow = nz[j:]
+
+            integrand= nz_znow * w_diff * w_inv[j:]
+            trapezoidal_sum = np.sum(integrand) - 0.5 * (integrand[0] + integrand[-1])
+
+            self.gs[j] = trapezoidal_sum*dz
+
+        self.gs=np.nan_to_num(self.gs)
+
         
         Om=self.cosmo._params['Omega_c']+self.cosmo._params['Omega_b']
-        self.gs*=3/2*Om/c_over_H0/c_over_H0*(1+z)
+        self.gs*=3/2*Om/c_over_H0/c_over_H0*(1+self.zs)
 
     def C_kk(self, ell):
         """ Calculates matter-matter C(ell)
@@ -76,8 +90,8 @@ class projectedSpectra:
         for i, z in enumerate(self.zs):
             P1h, P2h, P_all=self.halomod.source_source_ps(ell/self.ws[i], z)
 
-            result_1h+=self.gs[i]**2*P1h*self.deltaZs[i] / self.dwdz[i]
-            result_2h+=self.gs[i]**2*P2h*self.deltaZs[i] / self.dwdz[i]
+            result_1h+=self.gs[i]**2*P1h*self.deltaZs[i] * self.dwdz[i]
+            result_2h+=self.gs[i]**2*P2h*self.deltaZs[i] * self.dwdz[i]
 
         return result_1h, result_2h, result_1h+result_2h
 
@@ -100,8 +114,8 @@ class projectedSpectra:
         for i, z in enumerate(self.zs):
             P1h, P2h, P_all=self.halomod.source_lens_ps(ell/self.ws[i], z, type)
 
-            result_1h+=self.gs[i]/self.ws[i]*self.n_l(z)*P1h*self.deltaZs[i] / self.dwdz[i]
-            result_2h+=self.gs[i]/self.ws[i]*self.n_l(z)*P2h*self.deltaZs[i] / self.dwdz[i]
+            result_1h+=self.gs[i]/self.ws[i]*self.n_l(z)*P1h*self.deltaZs[i] #/ self.dwdz[i]
+            result_2h+=self.gs[i]/self.ws[i]*self.n_l(z)*P2h*self.deltaZs[i] #/ self.dwdz[i]
 
         return result_1h, result_2h, result_1h+result_2h
     
@@ -158,9 +172,9 @@ class projectedSpectra:
             w=self.ws[i]
             P1h, P2h, P3h, _ = self.halomod.source_lens_lens_bs(ell1/w, ell2/w, ell3/w, z, type1, type2)
 
-            result_1h+=self.gs[i]**2*self.n_l(z)/w/w*P1h*self.deltaZs[i] / self.dwdz[i]
-            result_2h+=self.gs[i]**2*self.n_l(z)/w/w*P2h*self.deltaZs[i] / self.dwdz[i]
-            result_3h+=self.gs[i]**2*self.n_l(z)/w/w*P3h*self.deltaZs[i] / self.dwdz[i]
+            result_1h+=self.gs[i]*self.n_l(z)**2/w**3*P1h*self.deltaZs[i] / self.dwdz[i]
+            result_2h+=self.gs[i]*self.n_l(z)**2/w**3*P2h*self.deltaZs[i] / self.dwdz[i]
+            result_3h+=self.gs[i]*self.n_l(z)**2/w**3*P3h*self.deltaZs[i] / self.dwdz[i]
         return result_1h, result_2h, result_3h, result_1h+result_2h+result_3h
 
 
@@ -185,10 +199,39 @@ class projectedSpectra:
 
         for i, z in enumerate(self.zs):
             w=self.ws[i]
-            P1h, P2h, P3h, _ = self.halomod.source_source_lens_bs(ell1/w, ell2/w, ell3/w, z, type)
+            B1h, B2h, B3h, _ = self.halomod.source_source_lens_bs(ell1/w, ell2/w, ell3/w, z, type)
 
-            result_1h+=self.gs[i]*self.n_l(z)**2/w/w/w*P1h*self.deltaZs[i] / self.dwdz[i]
-            result_2h+=self.gs[i]*self.n_l(z)**2/w/w/w*P2h*self.deltaZs[i] / self.dwdz[i]
-            result_3h+=self.gs[i]*self.n_l(z)**2/w/w/w*P3h*self.deltaZs[i] / self.dwdz[i]
+            result_1h+=self.gs[i]**2*self.n_l(z)/w**2*B1h*self.deltaZs[i] #/ self.dwdz[i]
+            result_2h+=self.gs[i]**2*self.n_l(z)**2/w**2*B2h*self.deltaZs[i] #/ self.dwdz[i]
+            result_3h+=self.gs[i]**2*self.n_l(z)**2/w**2*B3h*self.deltaZs[i] #/ self.dwdz[i]
+        return result_1h, result_2h, result_3h, result_1h+result_2h+result_3h
+    
+
+    def C_kkk(self, ell1, ell2, ell3, type=1):
+        """ Calculates matter-matter-matter C(ell)
+
+        Args:
+            ell1 (float): wave number
+            ell2 (float): wave number
+            ell3 (float): wave number
+            type (int, optional): Which lens population. Defaults to 1.
+
+        Returns:
+            float: 1_halo term
+            float: 2-halo term
+            float: 3-halo term
+            float: Total C(ell_1, ell_2, ell_3)
+        """
+        result_1h=0
+        result_2h=0
+        result_3h=0
+
+        for i, z in enumerate(self.zs):
+            w=self.ws[i]
+            B1h, B2h, B3h, _ = self.halomod.source_source_source_bs(ell1/w, ell2/w, ell3/w, z)
+
+            result_1h+=self.gs[i]**3/w*B1h*self.deltaZs[i] * self.dwdz[i]
+            result_2h+=self.gs[i]**3/w*B2h*self.deltaZs[i] * self.dwdz[i]
+            result_3h+=self.gs[i]**3/w*B3h*self.deltaZs[i] * self.dwdz[i]
         return result_1h, result_2h, result_3h, result_1h+result_2h+result_3h
     
