@@ -844,6 +844,131 @@ class halomodel:
 
         return One_halo, Two_halo, Three_halo, One_halo + Two_halo + Three_halo
 
+    def source_source_source_bs_1h(self, k1, k2, k3, z, mmin=1e10, mmax=1e17):
+        """1-halo term of Source-Source-Source Bispectrum (not normalized by matter density!)
+
+        Args:
+            k1 (float): wavenumber [1/Mpc]
+            k2 (float): wavenumber [1/Mpc]
+            k3 (float): wavenumber [1/Mpc]
+            z (float): redshift
+            mmin (float, optional): Minimal halo mass for integral [Msun]. Defaults to 1e10.
+            mmax (float, optional): Maximal halo mass for integral [Msun]. Defaults to 1e17.
+        """
+
+        kernel = (lambda m: self.dndm(m, z)* m**3* self.u_NFW(k1, m, z)* self.u_NFW(k2, m, z)* self.u_NFW(k3, m, z))
+
+        integral = np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
+
+        return integral
+
+    def source_source_source_bs_2h(self, k1, k2, k3, z, mmin=1e10, mmax=1e17):
+        """2-halo term of Source-Source-Source Bispectrum (not normalized by matterdensity!)
+
+        Args:
+            k1 (float): wavenumber [1/Mpc]
+            k2 (float): wavenumber [1/Mpc]
+            k3 (float): wavenumber [1/Mpc]
+            z (float): redshift
+            mmin (float, optional): Minimal halo mass for integral [Msun]. Defaults to 1e10.
+            mmax (float, optional): Maximal halo mass for integral [Msun]. Defaults to 1e17.
+        """
+
+        kernel = lambda m: self.dndm(m, z) * m * self.u_NFW(k1, m, z) * self.bh(m, z)
+        summand1 = np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
+
+        kernel = (lambda m: self.dndm(m, z)* m**2* self.u_NFW(k2, m, z)* self.u_NFW(k3, m, z)* self.bh(m, z) )
+        summand1 *= np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
+
+        summand1 *= self.pk_lin(k1, z)
+
+        kernel = lambda m: self.dndm(m, z) * m * self.u_NFW(k3, m, z) * self.bh(m, z)
+        summand2 = np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
+
+        kernel = (lambda m: self.dndm(m, z)* m**2* self.u_NFW(k1, m, z)* self.u_NFW(k2, m, z)* self.bh(m, z) )
+        summand2 *= np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
+
+        summand2 *= self.pk_lin(k3, z)
+
+        kernel = lambda m: self.dndm(m, z) * m * self.u_NFW(k2, m, z) * self.bh(m, z)
+        summand3 = np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
+
+        kernel = (lambda m: self.dndm(m, z)* m**2* self.u_NFW(k1, m, z)* self.u_NFW(k3, m, z)* self.bh(m, z) )
+        summand3 *= np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
+
+        summand3 *= self.pk_lin(k2, z)
+
+        return summand1 + summand2 + summand3
+
+
+    def source_source_source_bs_3h(self, k1, k2, k3, z, mmin=1e10, mmax=1e17):
+        """3-halo term of Source-Sourc-Source Bispectrum (not normalized by density!)
+
+        Args:
+            k1 (float): wavenumber [1/Mpc]
+            k2 (float): wavenumber [1/Mpc]
+            k3 (float): wavenumber [1/Mpc]
+            z (float): redshift
+            type (int, optional): Which lens population. Defaults to 1.
+            mmin (float, optional): Minimal halo mass for integral [Msun]. Defaults to 1e10.
+            mmax (float, optional): Maximal halo mass for integral [Msun]. Defaults to 1e17.
+        """
+        kernel = lambda m: self.dndm(m, z) * m * self.u_NFW(k1, m, z) * self.bh(m, z)
+        integral = np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
+
+        kernel = lambda m: self.dndm(m, z) * m * self.u_NFW(k2, m, z) * self.bh(m, z)
+        integral *= np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
+
+        kernel = lambda m: self.dndm(m, z) * m * self.u_NFW(k3, m, z) * self.bh(m, z)
+        integral *= np.trapz(kernel(np.geomspace(mmin, mmax, N)), np.geomspace(mmin, mmax, N))
+
+        return integral * self.bk_lin(k1, k2, k3, z)
+
+
+    def source_source_source_bs(self, k1, k2, k3, z, mmin=1e10, mmax=1e17):
+        """Source-Source-Source Bispectrum 
+
+        Args:
+            k1 (float): wavenumber [1/Mpc]
+            k2 (float): wavenumber [1/Mpc]
+            k3 (float): wavenumber [1/Mpc]
+            z (float): redshift
+            mmin (float, optional): Minimal halo mass for integral [Msun]. Defaults to 1e10.
+            mmax (float, optional): Maximal halo mass for integral [Msun]. Defaults to 1e17.
+
+
+        Return:
+            float: normalized 1-halo term
+            float: normalized 2-halo term
+            float: normalized 3-halo term
+            float: total bispectrum
+        """
+        rho_bar = ccl.rho_x(self.cosmo, 1 / (1 + z), "matter")
+
+        One_halo = (
+            self.source_source_source_bs_1h(k1, k2, k3, z, mmin, mmax)
+            / rho_bar
+            / rho_bar
+            / rho_bar
+        )
+
+        Two_halo = (
+            self.source_source_source_bs_2h(k1, k2, k3, z, mmin, mmax)
+            / rho_bar
+            / rho_bar
+            / rho_bar
+        )
+
+        Three_halo = (
+            self.source_source_source_bs_3h(k1, k2, k3, z, mmin, mmax)
+            / rho_bar
+            / rho_bar
+            / rho_bar
+        )
+
+        return One_halo, Two_halo, Three_halo, One_halo + Two_halo + Three_halo
+
+
     def bk_lin(self, k1, k2, k3, z):
         """ Linear (tree-level) bispectrum
 
