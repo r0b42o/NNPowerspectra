@@ -157,7 +157,6 @@ class projectedSpectra:
             type1 (int, optional): Which first lens population. Defaults to 1.
             type2 (int, optional): Which second lens population. Defaults to 1.
 
-
         Returns:
             float: 1_halo term
             float: 2-halo term
@@ -176,6 +175,36 @@ class projectedSpectra:
             result_2h+=self.gs[i]*self.n_l(z)**2/w**3*P2h*self.deltaZs[i] / self.dwdz[i]
             result_3h+=self.gs[i]*self.n_l(z)**2/w**3*P3h*self.deltaZs[i] / self.dwdz[i]
         return result_1h, result_2h, result_3h, result_1h+result_2h+result_3h
+
+    def C_kgg_linearBias(self, ell1, ell2, ell3, b=1):
+        """ Calculates matter-galaxy-galaxy C(ell)
+
+        Args:
+            ell1 (float): wave number
+            ell2 (float): wave number
+            ell3 (float): wave number
+            type1 (int, optional): Which first lens population. Defaults to 1.
+            type2 (int, optional): Which second lens population. Defaults to 1.
+
+        Returns:
+            float: 1_halo term
+            float: 2-halo term
+            float: 3-halo term
+            float: Total C(ell_1, ell_2, ell_3)
+        """
+        result_1h=0
+        result_2h=0
+        result_3h=0
+
+        for i, z in enumerate(self.zs):
+            w=self.ws[i]
+            P1h, P2h, P3h, _ = b*b*self.halomod.source_source_source_bs(ell1/w, ell2/w, ell3/w, z)
+
+            result_1h+=self.gs[i]*self.n_l(z)**2/w**3*P1h*self.deltaZs[i] / self.dwdz[i]
+            result_2h+=self.gs[i]*self.n_l(z)**2/w**3*P2h*self.deltaZs[i] / self.dwdz[i]
+            result_3h+=self.gs[i]*self.n_l(z)**2/w**3*P3h*self.deltaZs[i] / self.dwdz[i]
+        return result_1h, result_2h, result_3h, result_1h+result_2h+result_3h
+
 
 
     def C_kkg(self, ell1, ell2, ell3, type=1):
@@ -206,6 +235,34 @@ class projectedSpectra:
             result_3h+=self.gs[i]**2*self.n_l(z)**2/w**2*B3h*self.deltaZs[i] #/ self.dwdz[i]
         return result_1h, result_2h, result_3h, result_1h+result_2h+result_3h
     
+
+    def C_kkg_linearBias(self, ell1, ell2, ell3, b=1):
+        """ Calculates matter-matter-galaxy C(ell)
+
+        Args:
+            ell1 (float): wave number
+            ell2 (float): wave number
+            ell3 (float): wave number
+            type (int, optional): Which lens population. Defaults to 1.
+
+        Returns:
+            float: 1_halo term
+            float: 2-halo term
+            float: 3-halo term
+            float: Total C(ell_1, ell_2, ell_3)
+        """
+        result_1h=0
+        result_2h=0
+        result_3h=0
+
+        for i, z in enumerate(self.zs):
+            w=self.ws[i]
+            B1h, B2h, B3h, _ = b*self.halomod.source_source_source_bs(ell1/w, ell2/w, ell3/w, z)
+
+            result_1h+=self.gs[i]**2*self.n_l(z)/w**2*B1h*self.deltaZs[i] #/ self.dwdz[i]
+            result_2h+=self.gs[i]**2*self.n_l(z)**2/w**2*B2h*self.deltaZs[i] #/ self.dwdz[i]
+            result_3h+=self.gs[i]**2*self.n_l(z)**2/w**2*B3h*self.deltaZs[i] #/ self.dwdz[i]
+        return result_1h, result_2h, result_3h, result_1h+result_2h+result_3h
 
     def C_kkk(self, ell1, ell2, ell3, type=1):
         """ Calculates matter-matter-matter C(ell)
