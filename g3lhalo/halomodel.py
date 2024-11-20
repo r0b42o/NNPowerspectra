@@ -6,7 +6,7 @@ import scipy.integrate as integrate
 
 epsrel=1e-4
 
-N=int(256)
+N=int(128)
 
 class halomodel:
 
@@ -76,7 +76,6 @@ class halomodel:
 
         if self.verbose:
             print("Setting halo mass function")
-            print(hmfunc)
 
         self.dndm = lambda m, z: hmfunc(self.cosmo, m, 1.0 / (1.0 + z)) / (
             m * np.log(10)
@@ -90,7 +89,7 @@ class halomodel:
         """
         if self.verbose:
             print("Setting halo bias function")
-            print(hbfunc)
+
         self.bh = lambda m, z: hbfunc(self.cosmo, m, 1.0 / (1.0 + z))
 
     def set_concentration_mass_relation(self, cmfunc):
@@ -101,7 +100,7 @@ class halomodel:
         """
         if self.verbose:
             print("Setting concentration mass relation")
-            print(cmfunc)
+
         self.cm = lambda m, z: cmfunc(self.cosmo, m, 1.0 / (1.0 + z))
 
     def set_hod1(self, hodfunc_cen, hodfunc_sat):
