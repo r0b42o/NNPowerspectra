@@ -19,7 +19,9 @@ class projectedSpectra:
         self.halomod=halomod
         self.z_bins=np.linspace(zmin, zmax, nzbins)
         self.zs=0.5*(self.z_bins[1:]+self.z_bins[:1])
+
         self.deltaZs=self.z_bins[1:]-self.z_bins[:1]
+        self.deltaZs = self.deltaZs / np.sum(self.deltaZs) # Normalization
 
         self.ws=ccl.comoving_radial_distance(self.cosmo, 1/(1+self.zs))
 
@@ -147,6 +149,36 @@ class projectedSpectra:
         return result_1h, result_2h, result_1h+result_2h
 
     
+    # def C_kgg(self, ell1, ell2, ell3, type1=1, type2=1):
+    #     """ Calculates matter-galaxy-galaxy C(ell)
+
+    #     Args:
+    #         ell1 (float): wave number
+    #         ell2 (float): wave number
+    #         ell3 (float): wave number
+    #         type1 (int, optional): Which first lens population. Defaults to 1.
+    #         type2 (int, optional): Which second lens population. Defaults to 1.
+
+    #     Returns:
+    #         float: 1_halo term
+    #         float: 2-halo term
+    #         float: 3-halo term
+    #         float: Total C(ell_1, ell_2, ell_3)
+    #     """
+    #     result_1h=0
+    #     result_2h=0
+    #     result_3h=0
+
+    #     for i, z in enumerate(self.zs):
+    #         w=self.ws[i]
+    #         P1h, P2h, P3h, _ = self.halomod.source_lens_lens_bs(ell1/w, ell2/w, ell3/w, z, type1, type2)
+
+    #         result_1h+=self.gs[i]*self.n_l(z)**2/w**3*P1h*self.deltaZs[i] / self.dwdz[i]
+    #         result_2h+=self.gs[i]*self.n_l(z)**2/w**3*P2h*self.deltaZs[i] / self.dwdz[i]
+    #         result_3h+=self.gs[i]*self.n_l(z)**2/w**3*P3h*self.deltaZs[i] / self.dwdz[i]
+    #     return result_1h, result_2h, result_3h, result_1h+result_2h+result_3h
+
+
     def C_kgg(self, ell1, ell2, ell3, type1=1, type2=1):
         """ Calculates matter-galaxy-galaxy C(ell)
 
@@ -163,18 +195,35 @@ class projectedSpectra:
             float: 3-halo term
             float: Total C(ell_1, ell_2, ell_3)
         """
-        result_1h=0
-        result_2h=0
-        result_3h=0
 
+        if (ell1 == 0) or (ell2==0) or (ell3 ==0):
+            return 0, 0, 0, 0
+    # Initialize results
+        result_1h = 0.0
+        result_2h = 0.0
+        result_3h = 0.0
+
+        # Loop over redshift bins
         for i, z in enumerate(self.zs):
-            w=self.ws[i]
-            P1h, P2h, P3h, _ = self.halomod.source_lens_lens_bs(ell1/w, ell2/w, ell3/w, z, type1, type2)
+            w = self.ws[i]
+            delta_z = self.deltaZs[i]
+            
+            # Calculate the halo contributions for the current redshift
+            P1h, P2h, P3h, _ = self.halomod.source_lens_lens_bs(
+                ell1 / w, ell2 / w, ell3 / w, z, type1, type2
+            )
 
-            result_1h+=self.gs[i]*self.n_l(z)**2/w**3*P1h*self.deltaZs[i] / self.dwdz[i]
-            result_2h+=self.gs[i]*self.n_l(z)**2/w**3*P2h*self.deltaZs[i] / self.dwdz[i]
-            result_3h+=self.gs[i]*self.n_l(z)**2/w**3*P3h*self.deltaZs[i] / self.dwdz[i]
-        return result_1h, result_2h, result_3h, result_1h+result_2h+result_3h
+            # Compute the scaling factor
+            weight = self.gs[i] * (self.n_l(z)**2) / (w**3 * self.dwdz[i])
+
+            # Accumulate contributions
+            result_1h += weight * P1h * delta_z
+            result_2h += weight * P2h * delta_z
+            result_3h += weight * P3h * delta_z
+
+        # Return the results
+        return result_1h, result_2h, result_3h, result_1h + result_2h + result_3h
+
 
     def C_kgg_linearBias(self, ell1, ell2, ell3, b=1):
         """ Calculates matter-galaxy-galaxy C(ell)
@@ -192,6 +241,10 @@ class projectedSpectra:
             float: 3-halo term
             float: Total C(ell_1, ell_2, ell_3)
         """
+
+        if (ell1 == 0) or (ell2==0) or (ell3 ==0):
+            return 0, 0, 0, 0
+
         result_1h=0
         result_2h=0
         result_3h=0
@@ -222,6 +275,10 @@ class projectedSpectra:
             float: 3-halo term
             float: Total C(ell_1, ell_2, ell_3)
         """
+
+        if (ell1 == 0) or (ell2==0) or (ell3 ==0):
+            return 0, 0, 0, 0
+
         result_1h=0
         result_2h=0
         result_3h=0
@@ -251,6 +308,10 @@ class projectedSpectra:
             float: 3-halo term
             float: Total C(ell_1, ell_2, ell_3)
         """
+        if (ell1 == 0) or (ell2==0) or (ell3 ==0):
+            return 0, 0, 0, 0
+
+
         result_1h=0
         result_2h=0
         result_3h=0
@@ -279,6 +340,10 @@ class projectedSpectra:
             float: 3-halo term
             float: Total C(ell_1, ell_2, ell_3)
         """
+
+        if (ell1 == 0) or (ell2==0) or (ell3 ==0):
+            return 0, 0, 0, 0
+
         result_1h=0
         result_2h=0
         result_3h=0
