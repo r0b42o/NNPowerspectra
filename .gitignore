@@ -2,3 +2,5 @@
 /g3lhalo.egg-info
 g3lhalo/__pycache__/
 test/
+accuracy_tests/accuracy_files/
+accuracy_tests/accuracy_plots/
