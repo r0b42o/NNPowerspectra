@@ -1,0 +1,44 @@
+nohup: ignoring input
+2025-06-01 15:14:54.818142: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-06-01 15:14:54.821384: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2025-06-01 15:14:54.872037: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2025-06-01 15:14:54.873245: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-06-01 15:14:57.240427: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+/home/rhoffmann/.local/lib/python3.10/site-packages/tensorflow_addons/utils/tfa_eol_msg.py:23: UserWarning: 
+
+TensorFlow Addons (TFA) has ended development and introduction of new features.
+TFA has entered a minimal maintenance and release mode until a planned end of life in May 2024.
+Please modify downstream libraries to take dependencies from other repositories in our TensorFlow community (e.g. Keras, Keras-CV, and Keras-NLP). 
+
+For more information see: https://github.com/tensorflow/addons/issues/2807 
+
+  warnings.warn(
+WARNING:tensorflow:From /home/rhoffmann/G3LHalo_python/exampleNotebooks/GMNN_Bayesian_Optimization3.py:53: is_gpu_available (from tensorflow.python.framework.test_util) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.config.list_physical_devices('GPU')` instead.
+using cpu device 
+
+Number of test samples is 10500, should be 10500
+Number of validation samples is 10500, should be 10500
+Number of train samples is 49000, should be 49000
+/home/rhoffmann/G3LHalo_python/exampleNotebooks/GMNN_Bayesian_Optimization3.py:106: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axes.legend()
+number of training targets: 49000 . Should be 49000
+number of validation targets: 10500 . Should be 10500
+number of test targets: 10500 . Should be 10500
+Shape of training targets: (3, 49000, 50). Should be (3, 49000, 50)
+Shape of testing targets: (3, 10500, 50). Should be (3, 10500, 50)
+Shape of validation targets: (3, 10500, 50). Should be (3, 10500, 50)
+input min/max: 1.168300956697601e-06 16.999974244680363
+number of training features: 49000 . Should be 49000
+number of validation features: 10500 . Should be 10500
+number of test features: 10500 . Should be 10500
+Train Rescaled Shape: (3, 49000, 50)
+Test Rescaled Shape: (3, 10500, 50)
+Val Rescaled Shape: (3, 10500, 50)
+Train Rescaled Shape: (49000, 10)
+Test Rescaled Shape: (10500, 10)
+Val Rescaled Shape: (10500, 10)
+[I 2025-06-01 15:15:17,874] A new study created in memory with name: no-name-a97b51fa-3e70-4048-b381-6b64bbf53129
+Training model with params: layers=7, units=[150, 150, 150, 150, 150, 150, 150], activation=sigmoid, optimizer=RectifiedAdam, lr=1.4789235506891517e-06, batchsize=944

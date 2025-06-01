@@ -1,0 +1,4 @@
+2025-05-15_13-13-04 loss=0.004744, validation loss=0.006258, train_mae=0.032650, val_mae=0.033589, params={'n_layers': 4, 'n_units': 409, 'activation': 'tanh', 'optimizer': 'sgd', 'lr': 0.00063629842457384}
+2025-05-15_14-08-02 loss=0.000476, validation loss=0.005800, train_mae=0.014567, val_mae=0.020911, params={'n_layers': 10, 'n_units': 143, 'activation': 'relu', 'optimizer': 'rmsprop', 'lr': 0.0002990065679871269}
+2025-05-16_05-49-16 loss=0.021924, validation loss=0.022225, train_mae=0.072227, val_mae=0.071947, params={'n_layers': 4, 'n_units': 174, 'activation': 'swish', 'optimizer': 'sgd', 'lr': 0.00021147408613729875}
+2025-05-16_07-57-21 loss=0.000277, validation loss=0.000698, train_mae=0.007076, val_mae=0.007651, params={'n_layers': 6, 'n_units': 41, 'activation': 'gelu', 'optimizer': 'adam', 'lr': 0.0003623584116031994}

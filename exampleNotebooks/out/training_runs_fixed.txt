@@ -1,0 +1,17 @@
+loss=0.000553, validation loss=0.000727, train_mae=0.009482, val_mae=0.009976, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}
+loss=0.000423, validation loss=0.000748, train_mae=0.009072, val_mae=0.009710, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}
+
+loss=0.000443, validation loss=0.000732, train_mae=0.008830, val_mae=0.009428, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}
+loss=0.128589, validation loss=0.141270, train_mae=0.210280, val_mae=0.212219, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}
+loss=0.000429, validation loss=0.000708, train_mae=0.008997, val_mae=0.009597, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}
+loss=nan, validation loss=nan, train_mae=nan, val_mae=nan, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}
+loss=nan, validation loss=nan, train_mae=nan, val_mae=nan, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}
+loss=0.012333, validation loss=0.013447, train_mae=0.050146, val_mae=0.050740, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}
+loss=0.011512, validation loss=0.012686, train_mae=0.048164, val_mae=0.048789, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}
+loss=0.012546, validation loss=0.013599, train_mae=0.054143, val_mae=0.054549, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}
+loss=0.012864, validation loss=0.013939, train_mae=0.054964, val_mae=0.055468, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}
+loss=0.012213, validation loss=0.013467, train_mae=0.050053, val_mae=0.050705, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}
+loss=0.011872, validation loss=0.013108, train_mae=0.047844, val_mae=0.048542, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}
+loss=0.000273, validation loss=0.001463, train_mae=0.007389, val_mae=0.008745, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}
+loss=0.011439, validation loss=0.012473, train_mae=0.046513, val_mae=0.047052, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}
+loss=0.012588, validation loss=0.013968, train_mae=0.052155, val_mae=0.052795, params={'n_layers': 3, 'n_units': 343, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.0002793576269445611}

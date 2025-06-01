@@ -1,0 +1,304 @@
+nohup: ignoring input
+2025-05-21 10:39:45.907790: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-21 10:39:45.910487: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2025-05-21 10:39:45.952192: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2025-05-21 10:39:45.952737: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-05-21 10:39:47.201336: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+/home/rhoffmann/.local/lib/python3.10/site-packages/tensorflow_addons/utils/tfa_eol_msg.py:23: UserWarning: 
+
+TensorFlow Addons (TFA) has ended development and introduction of new features.
+TFA has entered a minimal maintenance and release mode until a planned end of life in May 2024.
+Please modify downstream libraries to take dependencies from other repositories in our TensorFlow community (e.g. Keras, Keras-CV, and Keras-NLP). 
+
+For more information see: https://github.com/tensorflow/addons/issues/2807 
+
+  warnings.warn(
+WARNING:tensorflow:From /home/rhoffmann/G3LHalo_python/exampleNotebooks/GMNN_Bayesian_Optimization2.py:53: is_gpu_available (from tensorflow.python.framework.test_util) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.config.list_physical_devices('GPU')` instead.
+using cpu device 
+
+Number of test samples is 10500, should be 10500
+Number of validation samples is 10500, should be 10500
+Number of train samples is 49000, should be 49000
+/home/rhoffmann/G3LHalo_python/exampleNotebooks/GMNN_Bayesian_Optimization2.py:106: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axes.legend()
+number of training targets: 49000 . Should be 49000
+number of validation targets: 10500 . Should be 10500
+number of test targets: 10500 . Should be 10500
+Shape of training targets: (3, 49000, 50). Should be (3, 49000, 50)
+Shape of testing targets: (3, 10500, 50). Should be (3, 10500, 50)
+Shape of validation targets: (3, 10500, 50). Should be (3, 10500, 50)
+input min/max: 1.168300956697601e-06 16.999974244680363
+number of training features: 49000 . Should be 49000
+number of validation features: 10500 . Should be 10500
+number of test features: 10500 . Should be 10500
+Train Rescaled Shape: (3, 49000, 50)
+Test Rescaled Shape: (3, 10500, 50)
+Val Rescaled Shape: (3, 10500, 50)
+Train Rescaled Shape: (49000, 10)
+Test Rescaled Shape: (10500, 10)
+Val Rescaled Shape: (10500, 10)
+[I 2025-05-21 10:40:05,849] A new study created in memory with name: no-name-d006689b-f8b3-4e3c-8a03-afae86b2350b
+Training model with params: layers=1, units=381, activation=tanh, optimizer=RAdam, lr=2.636062317663906e-05, batchsize=175
+Finish Trainingstep 1 of 3 with lr=2.636062317663906e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=2.636062317663906e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=2.636062317663906e-05 and 10000 epochs
+2025-05-21_14-35-57
+[I 2025-05-21 14:35:57,454] Trial 0 finished with value: 0.013742613606154919 and parameters: {'n_layers': 1, 'n_units': 381, 'activation': 'tanh', 'lr': 2.636062317663906e-05, 'optimizer': 'RAdam', 'batch_size': 175}. Best is trial 0 with value: 0.013742613606154919.
+Training model with params: layers=10, units=92, activation=sigmoid, optimizer=adam, lr=8.723948185560844e-05, batchsize=583
+Finish Trainingstep 1 of 3 with lr=8.723948185560844e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=8.723948185560844e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=8.723948185560844e-05 and 10000 epochs
+2025-05-21_17-15-24
+[I 2025-05-21 17:15:24,186] Trial 1 finished with value: 0.07518202066421509 and parameters: {'n_layers': 10, 'n_units': 92, 'activation': 'sigmoid', 'lr': 8.723948185560844e-05, 'optimizer': 'adam', 'batch_size': 583}. Best is trial 0 with value: 0.013742613606154919.
+Training model with params: layers=11, units=45, activation=gelu, optimizer=rmsprop, lr=0.001127048576301669, batchsize=514
+Finish Trainingstep 1 of 3 with lr=0.001127048576301669 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.001127048576301669 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.001127048576301669 and 10000 epochs
+2025-05-21_19-05-20
+[I 2025-05-21 19:05:20,844] Trial 2 finished with value: 0.0016810026718303561 and parameters: {'n_layers': 11, 'n_units': 45, 'activation': 'gelu', 'lr': 0.001127048576301669, 'optimizer': 'rmsprop', 'batch_size': 514}. Best is trial 2 with value: 0.0016810026718303561.
+Training model with params: layers=11, units=632, activation=tanh, optimizer=adam, lr=0.0006685085849825376, batchsize=1831
+Finish Trainingstep 1 of 3 with lr=0.0006685085849825376 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.0006685085849825376 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.0006685085849825376 and 10000 epochs
+2025-05-21_21-04-49
+[I 2025-05-21 21:04:50,143] Trial 3 finished with value: 0.0031864079646766186 and parameters: {'n_layers': 11, 'n_units': 632, 'activation': 'tanh', 'lr': 0.0006685085849825376, 'optimizer': 'adam', 'batch_size': 1831}. Best is trial 2 with value: 0.0016810026718303561.
+Training model with params: layers=5, units=662, activation=tanh, optimizer=rmsprop, lr=0.0009642369353891032, batchsize=1614
+Finish Trainingstep 1 of 3 with lr=0.0009642369353891032 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.0009642369353891032 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.0009642369353891032 and 10000 epochs
+2025-05-21_23-20-32
+[I 2025-05-21 23:20:32,457] Trial 4 finished with value: 0.0018669218989089131 and parameters: {'n_layers': 5, 'n_units': 662, 'activation': 'tanh', 'lr': 0.0009642369353891032, 'optimizer': 'rmsprop', 'batch_size': 1614}. Best is trial 2 with value: 0.0016810026718303561.
+Training model with params: layers=9, units=19, activation=selu, optimizer=adam, lr=0.009259301433763526, batchsize=275
+Finish Trainingstep 1 of 3 with lr=0.009259301433763526 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.009259301433763526 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.009259301433763526 and 10000 epochs
+2025-05-21_23-55-06
+[I 2025-05-21 23:55:06,747] Trial 5 finished with value: 0.001607884536497295 and parameters: {'n_layers': 9, 'n_units': 19, 'activation': 'selu', 'lr': 0.009259301433763526, 'optimizer': 'adam', 'batch_size': 275}. Best is trial 5 with value: 0.001607884536497295.
+Training model with params: layers=4, units=802, activation=swish, optimizer=rmsprop, lr=0.004168796247302613, batchsize=1760
+Finish Trainingstep 1 of 3 with lr=0.004168796247302613 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.004168796247302613 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.004168796247302613 and 10000 epochs
+2025-05-22_01-32-40
+[I 2025-05-22 01:32:40,402] Trial 6 finished with value: 0.0018071804661303759 and parameters: {'n_layers': 4, 'n_units': 802, 'activation': 'swish', 'lr': 0.004168796247302613, 'optimizer': 'rmsprop', 'batch_size': 1760}. Best is trial 5 with value: 0.001607884536497295.
+Training model with params: layers=10, units=387, activation=swish, optimizer=adam, lr=1.1865601666203334e-05, batchsize=1876
+Finish Trainingstep 1 of 3 with lr=1.1865601666203334e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=1.1865601666203334e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=1.1865601666203334e-05 and 10000 epochs
+2025-05-22_08-49-53
+[I 2025-05-22 08:49:53,514] Trial 7 finished with value: 0.0014403961831703782 and parameters: {'n_layers': 10, 'n_units': 387, 'activation': 'swish', 'lr': 1.1865601666203334e-05, 'optimizer': 'adam', 'batch_size': 1876}. Best is trial 7 with value: 0.0014403961831703782.
+Training model with params: layers=15, units=477, activation=tanh, optimizer=RAdam, lr=0.0005620949790750284, batchsize=1039
+Finish Trainingstep 1 of 3 with lr=0.0005620949790750284 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.0005620949790750284 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.0005620949790750284 and 10000 epochs
+2025-05-22_10-56-12
+[I 2025-05-22 10:56:13,100] Trial 8 finished with value: 0.0032721066381782293 and parameters: {'n_layers': 15, 'n_units': 477, 'activation': 'tanh', 'lr': 0.0005620949790750284, 'optimizer': 'RAdam', 'batch_size': 1039}. Best is trial 7 with value: 0.0014403961831703782.
+Training model with params: layers=12, units=638, activation=relu, optimizer=adam, lr=0.00025159544622652884, batchsize=1580
+Finish Trainingstep 1 of 3 with lr=0.00025159544622652884 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.00025159544622652884 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.00025159544622652884 and 10000 epochs
+2025-05-22_14-02-29
+[I 2025-05-22 14:02:29,521] Trial 9 finished with value: 0.006943515036255121 and parameters: {'n_layers': 12, 'n_units': 638, 'activation': 'relu', 'lr': 0.00025159544622652884, 'optimizer': 'adam', 'batch_size': 1580}. Best is trial 7 with value: 0.0014403961831703782.
+Training model with params: layers=7, units=1021, activation=swish, optimizer=adam, lr=1.176789937543225e-05, batchsize=1078
+Finish Trainingstep 1 of 3 with lr=1.176789937543225e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=1.176789937543225e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=1.176789937543225e-05 and 10000 epochs
+2025-05-23_01-45-16
+[I 2025-05-23 01:45:16,926] Trial 10 finished with value: 0.0012336790096014738 and parameters: {'n_layers': 7, 'n_units': 1021, 'activation': 'swish', 'lr': 1.176789937543225e-05, 'optimizer': 'adam', 'batch_size': 1078}. Best is trial 10 with value: 0.0012336790096014738.
+Training model with params: layers=6, units=939, activation=swish, optimizer=adam, lr=1.1633180415346654e-05, batchsize=1136
+Finish Trainingstep 1 of 3 with lr=1.1633180415346654e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=1.1633180415346654e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=1.1633180415346654e-05 and 10000 epochs
+2025-05-23_07-47-16
+[I 2025-05-23 07:47:16,660] Trial 11 finished with value: 0.0013763706665486097 and parameters: {'n_layers': 6, 'n_units': 939, 'activation': 'swish', 'lr': 1.1633180415346654e-05, 'optimizer': 'adam', 'batch_size': 1136}. Best is trial 10 with value: 0.0012336790096014738.
+Training model with params: layers=6, units=991, activation=elu, optimizer=adam, lr=4.0672604933004506e-05, batchsize=1124
+Finish Trainingstep 1 of 3 with lr=4.0672604933004506e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=4.0672604933004506e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=4.0672604933004506e-05 and 10000 epochs
+2025-05-23_12-49-07
+[I 2025-05-23 12:49:08,315] Trial 12 finished with value: 0.0014501995174214244 and parameters: {'n_layers': 6, 'n_units': 991, 'activation': 'elu', 'lr': 4.0672604933004506e-05, 'optimizer': 'adam', 'batch_size': 1124}. Best is trial 10 with value: 0.0012336790096014738.
+Training model with params: layers=7, units=1013, activation=leaky_relu, optimizer=adam, lr=1.0358454781077285e-05, batchsize=1287
+Finish Trainingstep 1 of 3 with lr=1.0358454781077285e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=1.0358454781077285e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=1.0358454781077285e-05 and 10000 epochs
+2025-05-23_16-51-07
+[I 2025-05-23 16:51:07,697] Trial 13 finished with value: 0.006024436093866825 and parameters: {'n_layers': 7, 'n_units': 1013, 'activation': 'leaky_relu', 'lr': 1.0358454781077285e-05, 'optimizer': 'adam', 'batch_size': 1287}. Best is trial 10 with value: 0.0012336790096014738.
+Training model with params: layers=3, units=857, activation=swish, optimizer=RAdam, lr=8.87618519697642e-05, batchsize=775
+Finish Trainingstep 1 of 3 with lr=8.87618519697642e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=8.87618519697642e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=8.87618519697642e-05 and 10000 epochs
+2025-05-23_22-42-17
+[I 2025-05-23 22:42:17,610] Trial 14 finished with value: 0.0015230514109134674 and parameters: {'n_layers': 3, 'n_units': 857, 'activation': 'swish', 'lr': 8.87618519697642e-05, 'optimizer': 'RAdam', 'batch_size': 775}. Best is trial 10 with value: 0.0012336790096014738.
+Training model with params: layers=8, units=856, activation=swish, optimizer=adam, lr=3.649645900051635e-05, batchsize=1343
+Finish Trainingstep 1 of 3 with lr=3.649645900051635e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=3.649645900051635e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=3.649645900051635e-05 and 10000 epochs
+2025-05-24_02-44-12
+[I 2025-05-24 02:44:13,352] Trial 15 finished with value: 0.0012522953329607844 and parameters: {'n_layers': 8, 'n_units': 856, 'activation': 'swish', 'lr': 3.649645900051635e-05, 'optimizer': 'adam', 'batch_size': 1343}. Best is trial 10 with value: 0.0012336790096014738.
+Training model with params: layers=8, units=788, activation=swish, optimizer=adam, lr=3.959831380127013e-05, batchsize=1396
+Finish Trainingstep 1 of 3 with lr=3.959831380127013e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=3.959831380127013e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=3.959831380127013e-05 and 10000 epochs
+2025-05-24_07-01-46
+[I 2025-05-24 07:01:46,431] Trial 16 finished with value: 0.0011769046541303396 and parameters: {'n_layers': 8, 'n_units': 788, 'activation': 'swish', 'lr': 3.959831380127013e-05, 'optimizer': 'adam', 'batch_size': 1396}. Best is trial 16 with value: 0.0011769046541303396.
+Training model with params: layers=14, units=746, activation=relu, optimizer=adam, lr=0.00014437603039842796, batchsize=836
+Finish Trainingstep 1 of 3 with lr=0.00014437603039842796 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.00014437603039842796 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.00014437603039842796 and 10000 epochs
+2025-05-24_10-58-34
+[I 2025-05-24 10:58:34,836] Trial 17 finished with value: 0.008981818333268166 and parameters: {'n_layers': 14, 'n_units': 746, 'activation': 'relu', 'lr': 0.00014437603039842796, 'optimizer': 'adam', 'batch_size': 836}. Best is trial 16 with value: 0.0011769046541303396.
+Training model with params: layers=8, units=904, activation=elu, optimizer=RAdam, lr=2.328628387012851e-05, batchsize=2043
+Finish Trainingstep 1 of 3 with lr=2.328628387012851e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=2.328628387012851e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=2.328628387012851e-05 and 10000 epochs
+2025-05-24_15-46-18
+[I 2025-05-24 15:46:18,316] Trial 18 finished with value: 0.001730134361423552 and parameters: {'n_layers': 8, 'n_units': 904, 'activation': 'elu', 'lr': 2.328628387012851e-05, 'optimizer': 'RAdam', 'batch_size': 2043}. Best is trial 16 with value: 0.0011769046541303396.
+Training model with params: layers=3, units=740, activation=sigmoid, optimizer=rmsprop, lr=6.08381249580475e-05, batchsize=1369
+Finish Trainingstep 1 of 3 with lr=6.08381249580475e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=6.08381249580475e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=6.08381249580475e-05 and 10000 epochs
+2025-05-24_18-11-16
+[I 2025-05-24 18:11:16,943] Trial 19 finished with value: 0.008098974823951721 and parameters: {'n_layers': 3, 'n_units': 740, 'activation': 'sigmoid', 'lr': 6.08381249580475e-05, 'optimizer': 'rmsprop', 'batch_size': 1369}. Best is trial 16 with value: 0.0011769046541303396.
+Training model with params: layers=13, units=1018, activation=leaky_relu, optimizer=adam, lr=0.00022555120163000815, batchsize=848
+Finish Trainingstep 1 of 3 with lr=0.00022555120163000815 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.00022555120163000815 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.00022555120163000815 and 10000 epochs
+2025-05-24_22-35-28
+[I 2025-05-24 22:35:29,538] Trial 20 finished with value: 0.00512111047282815 and parameters: {'n_layers': 13, 'n_units': 1018, 'activation': 'leaky_relu', 'lr': 0.00022555120163000815, 'optimizer': 'adam', 'batch_size': 848}. Best is trial 16 with value: 0.0011769046541303396.
+Training model with params: layers=8, units=879, activation=swish, optimizer=adam, lr=2.275201189422019e-05, batchsize=1391
+Finish Trainingstep 1 of 3 with lr=2.275201189422019e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=2.275201189422019e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=2.275201189422019e-05 and 10000 epochs
+2025-05-25_02-49-43
+[I 2025-05-25 02:49:43,465] Trial 21 finished with value: 0.0012338327942416072 and parameters: {'n_layers': 8, 'n_units': 879, 'activation': 'swish', 'lr': 2.275201189422019e-05, 'optimizer': 'adam', 'batch_size': 1391}. Best is trial 16 with value: 0.0011769046541303396.
+Training model with params: layers=7, units=793, activation=swish, optimizer=adam, lr=2.497508036499264e-05, batchsize=1500
+Finish Trainingstep 1 of 3 with lr=2.497508036499264e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=2.497508036499264e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=2.497508036499264e-05 and 10000 epochs
+2025-05-25_09-52-24
+[I 2025-05-25 09:52:24,922] Trial 22 finished with value: 0.0013980492949485779 and parameters: {'n_layers': 7, 'n_units': 793, 'activation': 'swish', 'lr': 2.497508036499264e-05, 'optimizer': 'adam', 'batch_size': 1500}. Best is trial 16 with value: 0.0011769046541303396.
+Training model with params: layers=9, units=907, activation=swish, optimizer=adam, lr=1.829850238657227e-05, batchsize=1296
+Finish Trainingstep 1 of 3 with lr=1.829850238657227e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=1.829850238657227e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=1.829850238657227e-05 and 10000 epochs
+2025-05-25_14-58-33
+[I 2025-05-25 14:58:33,767] Trial 23 finished with value: 0.0011415962362661958 and parameters: {'n_layers': 9, 'n_units': 907, 'activation': 'swish', 'lr': 1.829850238657227e-05, 'optimizer': 'adam', 'batch_size': 1296}. Best is trial 23 with value: 0.0011415962362661958.
+Training model with params: layers=9, units=543, activation=gelu, optimizer=adam, lr=1.7269308018082184e-05, batchsize=1157
+Finish Trainingstep 1 of 3 with lr=1.7269308018082184e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=1.7269308018082184e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=1.7269308018082184e-05 and 10000 epochs
+2025-05-25_22-28-46
+[I 2025-05-25 22:28:46,400] Trial 24 finished with value: 0.0010980810038745403 and parameters: {'n_layers': 9, 'n_units': 543, 'activation': 'gelu', 'lr': 1.7269308018082184e-05, 'optimizer': 'adam', 'batch_size': 1157}. Best is trial 24 with value: 0.0010980810038745403.
+Training model with params: layers=10, units=546, activation=gelu, optimizer=adam, lr=5.6105966380457196e-05, batchsize=1243
+Finish Trainingstep 1 of 3 with lr=5.6105966380457196e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=5.6105966380457196e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=5.6105966380457196e-05 and 10000 epochs
+2025-05-26_03-55-07
+[I 2025-05-26 03:55:07,335] Trial 25 finished with value: 0.0011888014851137996 and parameters: {'n_layers': 10, 'n_units': 546, 'activation': 'gelu', 'lr': 5.6105966380457196e-05, 'optimizer': 'adam', 'batch_size': 1243}. Best is trial 24 with value: 0.0010980810038745403.
+Training model with params: layers=9, units=235, activation=gelu, optimizer=adam, lr=0.00012185246099486915, batchsize=1546
+Finish Trainingstep 1 of 3 with lr=0.00012185246099486915 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.00012185246099486915 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.00012185246099486915 and 10000 epochs
+2025-05-26_07-58-44
+[I 2025-05-26 07:58:44,969] Trial 26 finished with value: 0.0012093278346583247 and parameters: {'n_layers': 9, 'n_units': 235, 'activation': 'gelu', 'lr': 0.00012185246099486915, 'optimizer': 'adam', 'batch_size': 1546}. Best is trial 24 with value: 0.0010980810038745403.
+Training model with params: layers=12, units=555, activation=selu, optimizer=adam, lr=1.6504390199308323e-05, batchsize=912
+Finish Trainingstep 1 of 3 with lr=1.6504390199308323e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=1.6504390199308323e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=1.6504390199308323e-05 and 10000 epochs
+2025-05-26_16-04-43
+[I 2025-05-26 16:04:43,611] Trial 27 finished with value: 0.0058852629736065865 and parameters: {'n_layers': 12, 'n_units': 555, 'activation': 'selu', 'lr': 1.6504390199308323e-05, 'optimizer': 'adam', 'batch_size': 912}. Best is trial 24 with value: 0.0010980810038745403.
+Training model with params: layers=9, units=441, activation=gelu, optimizer=rmsprop, lr=4.719534198421862e-05, batchsize=692
+Finish Trainingstep 1 of 3 with lr=4.719534198421862e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=4.719534198421862e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=4.719534198421862e-05 and 10000 epochs
+2025-05-27_05-28-30
+[I 2025-05-27 05:28:30,272] Trial 28 finished with value: 0.0014693655539304018 and parameters: {'n_layers': 9, 'n_units': 441, 'activation': 'gelu', 'lr': 4.719534198421862e-05, 'optimizer': 'rmsprop', 'batch_size': 692}. Best is trial 24 with value: 0.0010980810038745403.
+Training model with params: layers=5, units=240, activation=gelu, optimizer=RAdam, lr=1.959810136041427e-05, batchsize=16
+Finish Trainingstep 1 of 3 with lr=1.959810136041427e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=1.959810136041427e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=1.959810136041427e-05 and 10000 epochs
+2025-05-28_16-31-13
+[I 2025-05-28 16:31:14,152] Trial 29 finished with value: 0.0015080099692568183 and parameters: {'n_layers': 5, 'n_units': 240, 'activation': 'gelu', 'lr': 1.959810136041427e-05, 'optimizer': 'RAdam', 'batch_size': 16}. Best is trial 24 with value: 0.0010980810038745403.
+Training model with params: layers=2, units=701, activation=selu, optimizer=RAdam, lr=3.082663472358428e-05, batchsize=1205
+Finish Trainingstep 1 of 3 with lr=3.082663472358428e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=3.082663472358428e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=3.082663472358428e-05 and 10000 epochs
+2025-05-28_19-15-12
+[I 2025-05-28 19:15:12,500] Trial 30 finished with value: 0.004786150995641947 and parameters: {'n_layers': 2, 'n_units': 701, 'activation': 'selu', 'lr': 3.082663472358428e-05, 'optimizer': 'RAdam', 'batch_size': 1205}. Best is trial 24 with value: 0.0010980810038745403.
+Training model with params: layers=10, units=539, activation=gelu, optimizer=adam, lr=6.00633795651782e-05, batchsize=972
+Finish Trainingstep 1 of 3 with lr=6.00633795651782e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=6.00633795651782e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=6.00633795651782e-05 and 10000 epochs
+2025-05-29_01-59-12
+[I 2025-05-29 01:59:12,441] Trial 31 finished with value: 0.0012709120055660605 and parameters: {'n_layers': 10, 'n_units': 539, 'activation': 'gelu', 'lr': 6.00633795651782e-05, 'optimizer': 'adam', 'batch_size': 972}. Best is trial 24 with value: 0.0010980810038745403.
+Training model with params: layers=10, units=586, activation=gelu, optimizer=adam, lr=7.641892033935078e-05, batchsize=1258
+Finish Trainingstep 1 of 3 with lr=7.641892033935078e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=7.641892033935078e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=7.641892033935078e-05 and 10000 epochs
+2025-05-29_08-24-51
+[I 2025-05-29 08:24:51,539] Trial 32 finished with value: 0.0011926045408472419 and parameters: {'n_layers': 10, 'n_units': 586, 'activation': 'gelu', 'lr': 7.641892033935078e-05, 'optimizer': 'adam', 'batch_size': 1258}. Best is trial 24 with value: 0.0010980810038745403.
+Training model with params: layers=12, units=323, activation=sigmoid, optimizer=adam, lr=0.00014706877423306124, batchsize=1429
+Finish Trainingstep 1 of 3 with lr=0.00014706877423306124 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.00014706877423306124 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.00014706877423306124 and 10000 epochs
+2025-05-29_09-02-27
+[I 2025-05-29 09:02:27,204] Trial 33 finished with value: 0.9981680512428284 and parameters: {'n_layers': 12, 'n_units': 323, 'activation': 'sigmoid', 'lr': 0.00014706877423306124, 'optimizer': 'adam', 'batch_size': 1429}. Best is trial 24 with value: 0.0010980810038745403.
+Training model with params: layers=11, units=601, activation=gelu, optimizer=adam, lr=1.6193941288683465e-05, batchsize=1686
+Finish Trainingstep 1 of 3 with lr=1.6193941288683465e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=1.6193941288683465e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=1.6193941288683465e-05 and 10000 epochs
+2025-05-29_17-53-25
+[I 2025-05-29 17:53:25,557] Trial 34 finished with value: 0.0010351293021813035 and parameters: {'n_layers': 11, 'n_units': 601, 'activation': 'gelu', 'lr': 1.6193941288683465e-05, 'optimizer': 'adam', 'batch_size': 1686}. Best is trial 34 with value: 0.0010351293021813035.
+Training model with params: layers=11, units=612, activation=gelu, optimizer=adam, lr=1.8458879892285062e-05, batchsize=1698
+Finish Trainingstep 1 of 3 with lr=1.8458879892285062e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=1.8458879892285062e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=1.8458879892285062e-05 and 10000 epochs
+2025-05-30_02-50-04
+[I 2025-05-30 02:50:05,135] Trial 35 finished with value: 0.0010121363447979093 and parameters: {'n_layers': 11, 'n_units': 612, 'activation': 'gelu', 'lr': 1.8458879892285062e-05, 'optimizer': 'adam', 'batch_size': 1698}. Best is trial 35 with value: 0.0010121363447979093.
+Training model with params: layers=11, units=466, activation=gelu, optimizer=adam, lr=1.7073845070529437e-05, batchsize=1705
+Finish Trainingstep 1 of 3 with lr=1.7073845070529437e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=1.7073845070529437e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=1.7073845070529437e-05 and 10000 epochs
+2025-05-30_10-46-57
+[I 2025-05-30 10:46:58,172] Trial 36 finished with value: 0.0009797204984351993 and parameters: {'n_layers': 11, 'n_units': 466, 'activation': 'gelu', 'lr': 1.7073845070529437e-05, 'optimizer': 'adam', 'batch_size': 1705}. Best is trial 36 with value: 0.0009797204984351993.
+Training model with params: layers=11, units=464, activation=gelu, optimizer=rmsprop, lr=0.002188201262971814, batchsize=1672
+Finish Trainingstep 1 of 3 with lr=0.002188201262971814 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.002188201262971814 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.002188201262971814 and 10000 epochs
+2025-05-30_16-25-20
+[I 2025-05-30 16:25:20,421] Trial 37 finished with value: 0.0036633326672017574 and parameters: {'n_layers': 11, 'n_units': 464, 'activation': 'gelu', 'lr': 0.002188201262971814, 'optimizer': 'rmsprop', 'batch_size': 1672}. Best is trial 36 with value: 0.0009797204984351993.
+Training model with params: layers=11, units=614, activation=gelu, optimizer=adam, lr=1.4745640518831559e-05, batchsize=2001
+Finish Trainingstep 1 of 3 with lr=1.4745640518831559e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=1.4745640518831559e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=1.4745640518831559e-05 and 10000 epochs
+2025-05-31_03-05-20
+[I 2025-05-31 03:05:20,466] Trial 38 finished with value: 0.0011353439185768366 and parameters: {'n_layers': 11, 'n_units': 614, 'activation': 'gelu', 'lr': 1.4745640518831559e-05, 'optimizer': 'adam', 'batch_size': 2001}. Best is trial 36 with value: 0.0009797204984351993.
+Training model with params: layers=13, units=376, activation=gelu, optimizer=adam, lr=3.263084666581964e-05, batchsize=1729
+Finish Trainingstep 1 of 3 with lr=3.263084666581964e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=3.263084666581964e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=3.263084666581964e-05 and 10000 epochs
+2025-05-31_12-05-14
+[I 2025-05-31 12:05:14,294] Trial 39 finished with value: 0.0009353283676318824 and parameters: {'n_layers': 13, 'n_units': 376, 'activation': 'gelu', 'lr': 3.263084666581964e-05, 'optimizer': 'adam', 'batch_size': 1729}. Best is trial 39 with value: 0.0009353283676318824.
+Training model with params: layers=14, units=369, activation=gelu, optimizer=rmsprop, lr=0.00041338334749477836, batchsize=1769
+Finish Trainingstep 1 of 3 with lr=0.00041338334749477836 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.00041338334749477836 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.00041338334749477836 and 10000 epochs
+2025-05-31_18-49-43
+[I 2025-05-31 18:49:43,737] Trial 40 finished with value: 0.0018174549331888556 and parameters: {'n_layers': 14, 'n_units': 369, 'activation': 'gelu', 'lr': 0.00041338334749477836, 'optimizer': 'rmsprop', 'batch_size': 1769}. Best is trial 39 with value: 0.0009353283676318824.
+Training model with params: layers=13, units=483, activation=gelu, optimizer=adam, lr=3.116652715354908e-05, batchsize=1888
+Finish Trainingstep 1 of 3 with lr=3.116652715354908e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=3.116652715354908e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=3.116652715354908e-05 and 10000 epochs
+2025-06-01_03-39-51
+[I 2025-06-01 03:39:51,397] Trial 41 finished with value: 0.0010012027341872454 and parameters: {'n_layers': 13, 'n_units': 483, 'activation': 'gelu', 'lr': 3.116652715354908e-05, 'optimizer': 'adam', 'batch_size': 1888}. Best is trial 39 with value: 0.0009353283676318824.
+Training model with params: layers=13, units=418, activation=gelu, optimizer=adam, lr=2.8009994342270115e-05, batchsize=1886
+Finish Trainingstep 1 of 3 with lr=2.8009994342270115e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=2.8009994342270115e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=2.8009994342270115e-05 and 10000 epochs
+2025-06-01_13-20-21
+[I 2025-06-01 13:20:21,882] Trial 42 finished with value: 0.001152738812379539 and parameters: {'n_layers': 13, 'n_units': 418, 'activation': 'gelu', 'lr': 2.8009994342270115e-05, 'optimizer': 'adam', 'batch_size': 1886}. Best is trial 39 with value: 0.0009353283676318824.
+Training model with params: layers=13, units=490, activation=gelu, optimizer=adam, lr=3.305284877794322e-05, batchsize=1681
+Finish Trainingstep 1 of 3 with lr=3.305284877794322e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=3.305284877794322e-05 and 1000 epochs

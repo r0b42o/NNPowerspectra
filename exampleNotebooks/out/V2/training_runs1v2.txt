@@ -1,0 +1,7 @@
+2025-05-14_18-34-19 loss=0.001114, validation loss=0.002522, train_mae=0.013568, val_mae=0.015118, params={'n_layers': 2, 'n_units': 300, 'activation': 'selu', 'optimizer': 'rmsprop', 'lr': 0.00035807347684108743}
+2025-05-15_01-36-09 loss=0.000228, validation loss=0.001058, train_mae=0.005485, val_mae=0.007045, params={'n_layers': 3, 'n_units': 325, 'activation': 'sigmoid', 'optimizer': 'adam', 'lr': 0.00022930302231378595}
+2025-05-15_04-01-10 loss=0.000950, validation loss=0.003273, train_mae=0.016979, val_mae=0.018734, params={'n_layers': 9, 'n_units': 199, 'activation': 'gelu', 'optimizer': 'RAdam', 'lr': 0.0016784552379723642}
+2025-05-15_09-52-27 loss=0.000221, validation loss=0.003067, train_mae=0.006235, val_mae=0.010497, params={'n_layers': 5, 'n_units': 461, 'activation': 'leaky_relu', 'optimizer': 'adam', 'lr': 0.0008734891613334507}
+2025-05-15_19-47-04 loss=0.000068, validation loss=0.002540, train_mae=0.004152, val_mae=0.006544, params={'n_layers': 9, 'n_units': 287, 'activation': 'gelu', 'optimizer': 'rmsprop', 'lr': 0.00044647512966532643}
+2025-05-16_04-03-31 loss=0.000022, validation loss=0.005067, train_mae=0.002412, val_mae=0.011893, params={'n_layers': 10, 'n_units': 476, 'activation': 'leaky_relu', 'optimizer': 'adam', 'lr': 0.00010474515476717138}
+2025-05-16_06-31-35 loss=0.000670, validation loss=0.000777, train_mae=0.011998, val_mae=0.012222, params={'n_layers': 9, 'n_units': 21, 'activation': 'elu', 'optimizer': 'adam', 'lr': 0.00031133126562519673}

@@ -1,0 +1,12 @@
+2025-05-15_05-29-55 loss=0.002014, validation loss=0.003507, train_mae=0.019939, val_mae=0.020997, params={'n_layers': 2, 'n_units': 277, 'activation': 'tanh', 'optimizer': 'sgd', 'lr': 0.007802072013701012}
+2025-05-15_06-59-30 loss=0.027560, validation loss=0.027596, train_mae=0.059095, val_mae=0.059028, params={'n_layers': 1, 'n_units': 336, 'activation': 'swish', 'optimizer': 'AdamW', 'lr': 0.0037291565218562175}
+2025-05-15_09-05-36 loss=0.001604, validation loss=0.002042, train_mae=0.011921, val_mae=0.013025, params={'n_layers': 2, 'n_units': 406, 'activation': 'tanh', 'optimizer': 'rmsprop', 'lr': 0.0013828548036830235}
+2025-05-15_10-14-28 loss=0.000186, validation loss=0.003064, train_mae=0.008602, val_mae=0.011947, params={'n_layers': 7, 'n_units': 157, 'activation': 'leaky_relu', 'optimizer': 'adam', 'lr': 0.0009122728229578919}
+2025-05-15_14-14-10 loss=0.011851, validation loss=0.012932, train_mae=0.044400, val_mae=0.044526, params={'n_layers': 8, 'n_units': 405, 'activation': 'gelu', 'optimizer': 'AdamW', 'lr': 0.00027043363331280155}
+2025-05-15_16-27-22 loss=0.000973, validation loss=0.003595, train_mae=0.016319, val_mae=0.019212, params={'n_layers': 8, 'n_units': 103, 'activation': 'sigmoid', 'optimizer': 'rmsprop', 'lr': 0.006241367266125466}
+2025-05-15_18-39-17 loss=0.001715, validation loss=0.002024, train_mae=0.016091, val_mae=0.016790, params={'n_layers': 1, 'n_units': 142, 'activation': 'leaky_relu', 'optimizer': 'RAdam', 'lr': 0.003153669214748266}
+2025-05-15_19-27-13 loss=0.035937, validation loss=0.038048, train_mae=0.105368, val_mae=0.106226, params={'n_layers': 6, 'n_units': 92, 'activation': 'sigmoid', 'optimizer': 'AdamW', 'lr': 0.001629328471465094}
+2025-05-15_22-52-03 loss=0.000083, validation loss=0.003225, train_mae=0.005211, val_mae=0.010346, params={'n_layers': 9, 'n_units': 257, 'activation': 'leaky_relu', 'optimizer': 'adam', 'lr': 0.0004923406168729108}
+2025-05-16_08-10-05 loss=0.011813, validation loss=0.012970, train_mae=0.049364, val_mae=0.050045, params={'n_layers': 7, 'n_units': 433, 'activation': 'selu', 'optimizer': 'AdamW', 'lr': 0.00262101858466988}
+2025-05-16_10-31-38 loss=0.000357, validation loss=0.000901, train_mae=0.010440, val_mae=0.011107, params={'n_layers': 4, 'n_units': 33, 'activation': 'elu', 'optimizer': 'RAdam', 'lr': 0.0002189366885828277}
+2025-05-16_12-04-50 loss=0.001128, validation loss=0.001599, train_mae=0.019766, val_mae=0.020129, params={'n_layers': 4, 'n_units': 17, 'activation': 'elu', 'optimizer': 'RAdam', 'lr': 0.00019118802714752}

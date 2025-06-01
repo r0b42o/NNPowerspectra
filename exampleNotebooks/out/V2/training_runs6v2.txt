@@ -1,0 +1,8 @@
+2025-05-15_08-31-59 loss=1.000193, validation loss=1.025380, train_mae=0.757269, val_mae=0.760128, params={'n_layers': 7, 'n_units': 272, 'activation': 'swish', 'optimizer': 'RAdam', 'lr': 0.008658307087591778}
+2025-05-15_10-22-52 loss=0.000990, validation loss=0.002278, train_mae=0.011307, val_mae=0.012483, params={'n_layers': 4, 'n_units': 119, 'activation': 'swish', 'optimizer': 'rmsprop', 'lr': 0.004535444637586515}
+2025-05-15_15-33-28 loss=0.015610, validation loss=0.017048, train_mae=0.062902, val_mae=0.063703, params={'n_layers': 3, 'n_units': 236, 'activation': 'leaky_relu', 'optimizer': 'sgd', 'lr': 0.0002455298501838256}
+2025-05-15_17-18-50 loss=0.000114, validation loss=0.002974, train_mae=0.005576, val_mae=0.009490, params={'n_layers': 4, 'n_units': 184, 'activation': 'leaky_relu', 'optimizer': 'RAdam', 'lr': 0.0005433319881676432}
+2025-05-16_00-54-21 loss=0.000056, validation loss=0.004497, train_mae=0.004653, val_mae=0.009394, params={'n_layers': 3, 'n_units': 406, 'activation': 'relu', 'optimizer': 'rmsprop', 'lr': 0.0006660925554793043}
+2025-05-16_01-55-45 loss=0.010107, validation loss=0.010919, train_mae=0.032566, val_mae=0.032954, params={'n_layers': 4, 'n_units': 274, 'activation': 'leaky_relu', 'optimizer': 'AdamW', 'lr': 0.0006096960308736898}
+2025-05-16_07-48-15 loss=0.014537, validation loss=0.015543, train_mae=0.057980, val_mae=0.057944, params={'n_layers': 4, 'n_units': 149, 'activation': 'gelu', 'optimizer': 'sgd', 'lr': 0.00024323391561409784}
+2025-05-16_09-55-23 loss=0.000250, validation loss=0.002678, train_mae=0.008657, val_mae=0.010737, params={'n_layers': 2, 'n_units': 326, 'activation': 'swish', 'optimizer': 'adam', 'lr': 0.002833439196855724}

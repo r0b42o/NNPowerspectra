@@ -1,0 +1,20 @@
+nohup: ignoring input
+2025-05-19 13:07:24.054507: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-19 13:07:24.057463: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2025-05-19 13:07:24.100544: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2025-05-19 13:07:24.101263: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-05-19 13:07:29.498142: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+WARNING:tensorflow:From /home/rhoffmann/G3LHalo_python/exampleNotebooks/GenerateNNTrainData.py:26: is_gpu_available (from tensorflow.python.framework.test_util) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.config.list_physical_devices('GPU')` instead.
+using cpu device 
+
+/home/rhoffmann/.local/lib/python3.10/site-packages/g3lhalo/halomodel.py:508: IntegrationWarning: The algorithm does not converge.  Roundoff error is detected
+  in the extrapolation table.  It is assumed that the requested tolerance
+  cannot be achieved, and that the returned result (if full_output = 1) is 
+  the best which can be obtained.
+  A = integrate.quad(kernel_A, mmin, mmax, epsrel=epsrel)[0]
+CPU-Zeit: user = 150278.4200s, system = 1014.8900s, total = 151293.3100s
+Daten erfolgreich gespeichert in: ../Data//GeneratedData_10000_2025-05-19_14-00-51.json
+Daten erfolgreich gespeichert in: ../Data//GeneratedData_10000_2025-05-19_14-00-51.json

@@ -1,0 +1,5 @@
+2025-05-16_00-56-50 loss=0.027618, validation loss=0.028756, train_mae=0.093645, val_mae=0.094078, params={'n_layers': 7, 'n_units': 85, 'activation': 'swish', 'optimizer': 'sgd', 'lr': 0.00020513777765542441}
+2025-05-16_03-54-44 loss=0.000271, validation loss=0.002201, train_mae=0.010608, val_mae=0.012826, params={'n_layers': 10, 'n_units': 344, 'activation': 'elu', 'optimizer': 'RAdam', 'lr': 0.0005902528344444165}
+2025-05-16_05-44-52 loss=0.000328, validation loss=0.001654, train_mae=0.007543, val_mae=0.008827, params={'n_layers': 4, 'n_units': 223, 'activation': 'gelu', 'optimizer': 'rmsprop', 'lr': 0.000921643346259878}
+2025-05-16_09-10-25 loss=0.004377, validation loss=0.005332, train_mae=0.040964, val_mae=0.041758, params={'n_layers': 7, 'n_units': 18, 'activation': 'relu', 'optimizer': 'sgd', 'lr': 0.002438909569310677}
+2025-05-16_12-07-20 loss=0.003646, validation loss=0.004178, train_mae=0.030416, val_mae=0.031097, params={'n_layers': 10, 'n_units': 33, 'activation': 'sigmoid', 'optimizer': 'rmsprop', 'lr': 0.0006857963213770426}

@@ -22,10 +22,6 @@ from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.activations import gelu
 import optuna
 from tensorflow.keras.layers import LeakyReLU, ELU
-import re
-import ast
-import optuna
-from optuna.samplers import TPESampler
 
 # Für spezielle Aktivierungen wie Swish, GELU
 try:
@@ -65,7 +61,7 @@ tf.random.set_seed(9721)
 # %%
 # Get test/training split
 
-N_total=50000 # Total samples
+N_total=70000 # Total samples
 f_val = 0.15 # We use 15% of samples as validation samples
 f_test=0.15 # We use 15% of samples as test samples 
 f_train=1-f_val-f_test
@@ -125,10 +121,17 @@ os.makedirs(data_dir, exist_ok=True)
 data_dir = "../Data/"
 
 # File path to the saved JSON file
-data_fn = f"{data_dir}GeneratedData_50000_2025-05-14_15-25-38.json"
+data_fn = [
+    f"{data_dir}GeneratedData_50000_2025-05-14_15-25-38.json",
+    f"{data_dir}GeneratedData_10000_2025-05-20_12-41-13_alpha0_01.json",
+    f"{data_dir}GeneratedData_10000_2025-05-20_12-56-40_Mprime1_5.json",
+]
 # read in data
-with open(data_fn, "r") as json_file:
-    data_samples = json.load(json_file)
+data_samples = []
+for dataset in data_fn:
+    with open(dataset, "r") as json_file:
+        current_samples = json.load(json_file)
+        data_samples.extend(current_samples)
 
 # Define keys needed for Galaxie-Matter
 target_keys = [ 
@@ -215,10 +218,17 @@ N_modes=len(lin_training_targets['modes'])
 # ## Read in related features
 
 # %%
-para_fn = f"{data_dir}Parameter_50000_2025-05-14_15-25-38.json"
+para_fn = [
+    f"{data_dir}Parameter_50000_2025-05-14_15-25-38.json",
+    f"{data_dir}Parameter_10000_2025-05-20_12-41-13_alpha0_01.json",
+    f"{data_dir}Parameter_10000_2025-05-20_12-56-40_Mprime1_5.json",
+]
 # Read in
-with open(para_fn, "r") as json_file:
-    samples = json.load(json_file)
+samples = []
+for paraset in para_fn:
+    with open(paraset, "r") as json_file:
+        current = json.load(json_file)
+        samples.extend(current)
 
 
 # Create numpy arrays for each of the parameter columns
@@ -730,54 +740,14 @@ test_targets_rescaled = np.transpose(test_targets_rescaled, (1, 0, 2))
 
 # %%
 # Parametergrenzen definieren
-
-# Parametergrenzen definieren
 LAYER_RANGE = (1, 15)
 NEURON_RANGE = (16, 1024)
 LEARNING_RATE_RANGE = (1e-5, 1e-2)
 ACTIVATIONS = ["relu", "selu", "leaky_relu", "elu", "gelu", "swish", "sigmoid", "tanh"]
-OPTIMIZERS = ["adam", "sgd", "rmsprop", "AdamW", "RAdam"]
+OPTIMIZERS = ["adam", "rmsprop", "RAdam"]
 BATCH_SIZE_RANGE = (16, 2048)
 
-log_file = "training_runsv3.txt"
-patience_values = [100, 100, 1000]
-max_epochs = [1000, 1000, 10000]
-model_filename = "../Emulators/NN_GM"
-
-# Dummy-Platzhalter (ersetzen mit echten Daten)
-# train_features_rescaled, train_targets_rescaled, val_features_rescaled, val_targets_rescaled
-# N_train, N_val müssen gesetzt sein
-
-def parse_training_log(file_path):
-    completed_trials = []
-    try:
-        with open(file_path, "r") as f:
-            lines = f.readlines()
-            for line in lines:
-                match = re.search(r"loss=(.*?), validation loss=(.*?), train_mae=(.*?), val_mae=(.*?), params=(\{.*\})", line)
-                if match:
-                    val_loss = float(match.group(2))
-                    params = ast.literal_eval(match.group(5))
-                    params['lr'] = float(params['lr'])
-                    completed_trials.append((params, val_loss))
-    except FileNotFoundError:
-        pass
-    return completed_trials
-
-class FileAwareSampler(TPESampler):
-    def __init__(self, log_file, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.log_file = log_file
-
-    def sample_relative(self, study, trial, search_space):
-        existing_trials = parse_training_log(self.log_file)
-        for _ in range(100):  # max 100 Versuche
-            params = super().sample_relative(study, trial, search_space)
-            already_tested = any(all(params.get(k) == v for k, v in t[0].items()) for t in existing_trials)
-            if not already_tested:
-                return params
-        raise RuntimeError("Keine neuen Parameterkombinationen gefunden.")
-
+# Modellfunktion (wie im Original)
 def build_model(n_layers, n_units, activation, input_dim):
     model = keras.Sequential()
     model.add(layers.Input(shape=(input_dim,)))
@@ -793,18 +763,18 @@ def build_model(n_layers, n_units, activation, input_dim):
     return model
 
 def objective(trial):
-    all_training_loss = []
-    all_validation_loss = []
-
+    all_training_loss=[]
+    all_validation_loss=[]
     n_layers = trial.suggest_int("n_layers", *LAYER_RANGE)
     n_units = trial.suggest_int("n_units", *NEURON_RANGE)
     activation = trial.suggest_categorical("activation", ACTIVATIONS)
     learning_rate = trial.suggest_float("lr", *LEARNING_RATE_RANGE, log=True)
     optimizer_choice = trial.suggest_categorical("optimizer", OPTIMIZERS)
     batch_size = trial.suggest_int("batch_size", *BATCH_SIZE_RANGE)
-
+    # Modell bauen
     model = build_model(n_layers, n_units, activation, train_features_rescaled.shape[1])
 
+    # Optimizer erstellen
     if optimizer_choice == "adam":
         optimizer = keras.optimizers.Adam(learning_rate=learning_rate)
     elif optimizer_choice == "sgd":
@@ -812,20 +782,21 @@ def objective(trial):
     elif optimizer_choice == "rmsprop":
         optimizer = keras.optimizers.RMSprop(learning_rate=learning_rate)
     elif optimizer_choice == "AdamW":
-        from tensorflow_addons.optimizers import AdamW
         optimizer = AdamW(learning_rate=learning_rate, weight_decay=1e-4)
     elif optimizer_choice == "RAdam":
-        from tensorflow_addons.optimizers import RectifiedAdam
         optimizer = RectifiedAdam(learning_rate=learning_rate)
 
+    # Kompilieren
     model.compile(optimizer=optimizer, loss="mse", metrics=["mae"])
+
 
     print(f"Training model with params: layers={n_layers}, units={n_units}, activation={activation}, optimizer={optimizer_choice}, lr={learning_rate}, batchsize={batch_size}")
 
     for i in range(len(max_epochs)):
+        # EarlyStopping Callback
         earlystop = keras.callbacks.EarlyStopping(
             monitor="val_loss", patience=patience_values[i], restore_best_weights=True, verbose=0
-        )
+        )  
         history = model.fit(
             train_features_rescaled,
             train_targets_rescaled.reshape((N_train, 150)),
@@ -839,21 +810,28 @@ def objective(trial):
         all_training_loss.extend(history.history['loss'])
         all_validation_loss.extend(history.history['val_loss'])
 
-        tf.keras.backend.set_value(model.optimizer.learning_rate, learning_rate / (10 ** (i + 1)))
+
+
+        # Learning Rate um Faktor 10 reduzieren
+        tf.keras.backend.set_value(model.optimizer.learning_rate, learning_rate / (10 ** i))
         print(f"Finish Trainingstep {i+1} of {len(max_epochs)} with lr={learning_rate} and {max_epochs[i]} epochs")
 
+
+
+
+    # loss auswerten
     loss, train_mae = model.evaluate(train_features_rescaled, train_targets_rescaled.reshape((N_train, 150)), verbose=0)
     val_loss, val_mae = model.evaluate(val_features_rescaled, val_targets_rescaled.reshape((N_val, 150)), verbose=0)
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     print(timestamp)
-
-    with open(log_file, "a") as f:
+    # Logfile schreiben
+    with open("training_runs_optimized.txt", "a") as f:
         f.write(f"{timestamp} loss={loss:.6f}, validation loss={val_loss:.6f}, train_mae={train_mae:.6f}, val_mae={val_mae:.6f}, ")
         f.write(f"params={{'n_layers': {n_layers}, 'n_units': {n_units}, 'activation': '{activation}', 'optimizer': '{optimizer_choice}', 'lr': {learning_rate}, 'batchsize': {batch_size}}}\n")
 
     training_history = {
-        'loss': all_training_loss,
-        'val_loss': all_validation_loss
+    'loss': all_training_loss,
+    'val_loss': all_validation_loss
     }
 
     model.save(f'../NN_builds/NN_{timestamp}.keras')
@@ -861,15 +839,12 @@ def objective(trial):
     with open(f'../Traininghist/full_training_history_{timestamp}.json', 'w') as f:
         json.dump(training_history, f)
 
-    return val_loss
+    return val_loss  # Optuna minimiert diesen Wert
 
 # Studie starten
-random_seed = random.randint(0, 1000000)
-print('using random seed: ', random_seed)
-sampler = FileAwareSampler(log_file=log_file, seed=random_seed)
-study = optuna.create_study(direction="minimize", sampler=sampler)
-study.optimize(objective, n_trials=100)
+study = optuna.create_study(direction="minimize")
+study.optimize(objective, n_trials=100)  # Erhöhe für genauere Suche
 
+# Beste Kombination anzeigen
 print("Beste Parameter:")
 print(study.best_params)
-

@@ -1,0 +1,249 @@
+nohup: ignoring input
+2025-05-09 23:15:06.111563: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-09 23:15:06.113246: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2025-05-09 23:15:06.146175: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2025-05-09 23:15:06.146640: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-05-09 23:15:11.599978: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+/home/rhoffmann/.local/lib/python3.10/site-packages/tensorflow_addons/utils/tfa_eol_msg.py:23: UserWarning: 
+
+TensorFlow Addons (TFA) has ended development and introduction of new features.
+TFA has entered a minimal maintenance and release mode until a planned end of life in May 2024.
+Please modify downstream libraries to take dependencies from other repositories in our TensorFlow community (e.g. Keras, Keras-CV, and Keras-NLP). 
+
+For more information see: https://github.com/tensorflow/addons/issues/2807 
+
+  warnings.warn(
+WARNING:tensorflow:From /home/rhoffmann/G3LHalo_python/exampleNotebooks/GMNN_Bayesian_Optimization.py:54: is_gpu_available (from tensorflow.python.framework.test_util) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.config.list_physical_devices('GPU')` instead.
+using cpu device 
+
+Number of test samples is 7500, should be 7500
+Number of validation samples is 7500, should be 7500
+Number of train samples is 35000, should be 35000
+number of training samples: 35000 . Should be 35000
+number of validation samples: 7500 . Should be 7500
+number of test samples: 7500 . Should be 7500
+Shape of training data: (3, 35000, 50). Should be (3, 35000, 50)
+Shape of testing data: (3, 7500, 50). Should be (3, 7500, 50)
+Shape of validation data: (3, 7500, 50). Should be (3, 7500, 50)
+number of training samples: 35000 . Should be 35000
+number of validation samples: 7500 . Should be 7500
+number of test samples: 7500 . Should be 7500
+Shape of training data: (1, 35000, 50). Should be (1, 35000, 50)
+Shape of testing data: (1, 7500, 50). Should be (1, 7500, 50)
+Shape of validation data: (1, 7500, 50). Should be (1, 7500, 50)
+number of training samples: 35000 . Should be 35000
+number of validation samples: 7500 . Should be 7500
+number of test samples: 7500 . Should be 7500
+/home/rhoffmann/G3LHalo_python/exampleNotebooks/GMNN_Bayesian_Optimization.py:289: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axes.legend()
+Train Rescaled Shape: (3, 35000, 50)
+Test Rescaled Shape: (3, 7500, 50)
+Val Rescaled Shape: (3, 7500, 50)
+input min/max: 1.168300956697601e-06 16.999974244680363
+output min/max: -14.015791574574829 4.437317596591866
+[I 2025-05-09 23:15:34,134] A new study created in memory with name: no-name-30866244-e08d-4ee0-beac-8922d1bed839
+Training model with trial #0 and params: {'n_layers': 6, 'n_units': 300, 'activation': 'gelu', 'lr': 0.00030674168443245084, 'optimizer': 'RAdam'}
+[I 2025-05-09 23:52:41,701] Trial 0 finished with value: 0.0018893188098445535 and parameters: {'n_layers': 6, 'n_units': 300, 'activation': 'gelu', 'lr': 0.00030674168443245084, 'optimizer': 'RAdam'}. Best is trial 0 with value: 0.0018893188098445535.
+Training model with trial #1 and params: {'n_layers': 10, 'n_units': 334, 'activation': 'relu', 'lr': 0.003137273772465594, 'optimizer': 'sgd'}
+[I 2025-05-10 02:46:03,142] Trial 1 finished with value: 0.007130532991141081 and parameters: {'n_layers': 10, 'n_units': 334, 'activation': 'relu', 'lr': 0.003137273772465594, 'optimizer': 'sgd'}. Best is trial 0 with value: 0.0018893188098445535.
+Training model with trial #2 and params: {'n_layers': 4, 'n_units': 292, 'activation': 'tanh', 'lr': 0.0008135336814619343, 'optimizer': 'sgd'}
+[I 2025-05-10 04:24:13,582] Trial 2 finished with value: 0.0303378663957119 and parameters: {'n_layers': 4, 'n_units': 292, 'activation': 'tanh', 'lr': 0.0008135336814619343, 'optimizer': 'sgd'}. Best is trial 0 with value: 0.0018893188098445535.
+Training model with trial #3 and params: {'n_layers': 9, 'n_units': 424, 'activation': 'sigmoid', 'lr': 0.0001306658378146931, 'optimizer': 'rmsprop'}
+[I 2025-05-10 05:39:51,648] Trial 3 finished with value: 1.0276706218719482 and parameters: {'n_layers': 9, 'n_units': 424, 'activation': 'sigmoid', 'lr': 0.0001306658378146931, 'optimizer': 'rmsprop'}. Best is trial 0 with value: 0.0018893188098445535.
+Training model with trial #4 and params: {'n_layers': 7, 'n_units': 105, 'activation': 'tanh', 'lr': 0.0028640223784690876, 'optimizer': 'AdamW'}
+[I 2025-05-10 05:48:37,461] Trial 4 finished with value: 0.02955043874680996 and parameters: {'n_layers': 7, 'n_units': 105, 'activation': 'tanh', 'lr': 0.0028640223784690876, 'optimizer': 'AdamW'}. Best is trial 0 with value: 0.0018893188098445535.
+Training model with trial #5 and params: {'n_layers': 5, 'n_units': 401, 'activation': 'relu', 'lr': 0.0016328276282003974, 'optimizer': 'rmsprop'}
+[I 2025-05-10 07:24:21,313] Trial 5 finished with value: 0.003517035162076354 and parameters: {'n_layers': 5, 'n_units': 401, 'activation': 'relu', 'lr': 0.0016328276282003974, 'optimizer': 'rmsprop'}. Best is trial 0 with value: 0.0018893188098445535.
+Training model with trial #6 and params: {'n_layers': 5, 'n_units': 357, 'activation': 'leaky_relu', 'lr': 0.005041917548768959, 'optimizer': 'sgd'}
+[I 2025-05-10 09:26:13,451] Trial 6 finished with value: 0.007575623225420713 and parameters: {'n_layers': 5, 'n_units': 357, 'activation': 'leaky_relu', 'lr': 0.005041917548768959, 'optimizer': 'sgd'}. Best is trial 0 with value: 0.0018893188098445535.
+Training model with trial #7 and params: {'n_layers': 4, 'n_units': 73, 'activation': 'swish', 'lr': 0.002746279949437016, 'optimizer': 'rmsprop'}
+[I 2025-05-10 10:22:07,385] Trial 7 finished with value: 0.0023665549233555794 and parameters: {'n_layers': 4, 'n_units': 73, 'activation': 'swish', 'lr': 0.002746279949437016, 'optimizer': 'rmsprop'}. Best is trial 0 with value: 0.0018893188098445535.
+Training model with trial #8 and params: {'n_layers': 5, 'n_units': 281, 'activation': 'sigmoid', 'lr': 0.0012394769562059497, 'optimizer': 'adam'}
+[I 2025-05-10 10:36:23,905] Trial 8 finished with value: 1.0276747941970825 and parameters: {'n_layers': 5, 'n_units': 281, 'activation': 'sigmoid', 'lr': 0.0012394769562059497, 'optimizer': 'adam'}. Best is trial 0 with value: 0.0018893188098445535.
+Training model with trial #9 and params: {'n_layers': 5, 'n_units': 474, 'activation': 'sigmoid', 'lr': 0.00012096100428319841, 'optimizer': 'sgd'}
+[I 2025-05-10 11:01:40,103] Trial 9 finished with value: 1.027764916419983 and parameters: {'n_layers': 5, 'n_units': 474, 'activation': 'sigmoid', 'lr': 0.00012096100428319841, 'optimizer': 'sgd'}. Best is trial 0 with value: 0.0018893188098445535.
+Training model with trial #10 and params: {'n_layers': 2, 'n_units': 210, 'activation': 'gelu', 'lr': 0.0004955586481148164, 'optimizer': 'RAdam'}
+[I 2025-05-10 11:24:58,885] Trial 10 finished with value: 0.001738445833325386 and parameters: {'n_layers': 2, 'n_units': 210, 'activation': 'gelu', 'lr': 0.0004955586481148164, 'optimizer': 'RAdam'}. Best is trial 10 with value: 0.001738445833325386.
+Training model with trial #11 and params: {'n_layers': 1, 'n_units': 176, 'activation': 'gelu', 'lr': 0.00037642342250335535, 'optimizer': 'RAdam'}
+[I 2025-05-10 11:37:24,084] Trial 11 finished with value: 0.01100094337016344 and parameters: {'n_layers': 1, 'n_units': 176, 'activation': 'gelu', 'lr': 0.00037642342250335535, 'optimizer': 'RAdam'}. Best is trial 10 with value: 0.001738445833325386.
+Training model with trial #12 and params: {'n_layers': 1, 'n_units': 195, 'activation': 'gelu', 'lr': 0.0003652997106612833, 'optimizer': 'RAdam'}
+[I 2025-05-10 12:05:50,883] Trial 12 finished with value: 0.003820599988102913 and parameters: {'n_layers': 1, 'n_units': 195, 'activation': 'gelu', 'lr': 0.0003652997106612833, 'optimizer': 'RAdam'}. Best is trial 10 with value: 0.001738445833325386.
+Training model with trial #13 and params: {'n_layers': 7, 'n_units': 193, 'activation': 'elu', 'lr': 0.00039161980430174934, 'optimizer': 'RAdam'}
+[I 2025-05-10 12:49:22,379] Trial 13 finished with value: 0.0012845380697399378 and parameters: {'n_layers': 7, 'n_units': 193, 'activation': 'elu', 'lr': 0.00039161980430174934, 'optimizer': 'RAdam'}. Best is trial 13 with value: 0.0012845380697399378.
+Training model with trial #14 and params: {'n_layers': 8, 'n_units': 196, 'activation': 'elu', 'lr': 0.0006413484673000081, 'optimizer': 'RAdam'}
+[I 2025-05-10 13:43:25,933] Trial 14 finished with value: 0.0012559500755742192 and parameters: {'n_layers': 8, 'n_units': 196, 'activation': 'elu', 'lr': 0.0006413484673000081, 'optimizer': 'RAdam'}. Best is trial 14 with value: 0.0012559500755742192.
+Training model with trial #15 and params: {'n_layers': 8, 'n_units': 25, 'activation': 'elu', 'lr': 0.00021025740040154283, 'optimizer': 'RAdam'}
+[I 2025-05-10 14:13:29,045] Trial 15 finished with value: 0.0015478032873943448 and parameters: {'n_layers': 8, 'n_units': 25, 'activation': 'elu', 'lr': 0.00021025740040154283, 'optimizer': 'RAdam'}. Best is trial 14 with value: 0.0012559500755742192.
+Training model with trial #16 and params: {'n_layers': 8, 'n_units': 130, 'activation': 'elu', 'lr': 0.0005851665995824843, 'optimizer': 'AdamW'}
+[I 2025-05-10 14:29:36,894] Trial 16 finished with value: 0.02929219976067543 and parameters: {'n_layers': 8, 'n_units': 130, 'activation': 'elu', 'lr': 0.0005851665995824843, 'optimizer': 'AdamW'}. Best is trial 14 with value: 0.0012559500755742192.
+Training model with trial #17 and params: {'n_layers': 7, 'n_units': 236, 'activation': 'selu', 'lr': 0.0009233230954455493, 'optimizer': 'adam'}
+[I 2025-05-10 15:10:10,101] Trial 17 finished with value: 0.002395049901679158 and parameters: {'n_layers': 7, 'n_units': 236, 'activation': 'selu', 'lr': 0.0009233230954455493, 'optimizer': 'adam'}. Best is trial 14 with value: 0.0012559500755742192.
+Training model with trial #18 and params: {'n_layers': 10, 'n_units': 157, 'activation': 'elu', 'lr': 0.00019397721521351296, 'optimizer': 'RAdam'}
+[I 2025-05-10 15:52:58,962] Trial 18 finished with value: 0.0015145031502470374 and parameters: {'n_layers': 10, 'n_units': 157, 'activation': 'elu', 'lr': 0.00019397721521351296, 'optimizer': 'RAdam'}. Best is trial 14 with value: 0.0012559500755742192.
+Training model with trial #19 and params: {'n_layers': 8, 'n_units': 251, 'activation': 'elu', 'lr': 0.008387596428385602, 'optimizer': 'RAdam'}
+[I 2025-05-10 16:13:20,369] Trial 19 finished with value: 1.0280547142028809 and parameters: {'n_layers': 8, 'n_units': 251, 'activation': 'elu', 'lr': 0.008387596428385602, 'optimizer': 'RAdam'}. Best is trial 14 with value: 0.0012559500755742192.
+Training model with trial #20 and params: {'n_layers': 7, 'n_units': 68, 'activation': 'elu', 'lr': 0.00153644125716096, 'optimizer': 'RAdam'}
+[I 2025-05-10 16:29:02,117] Trial 20 finished with value: 0.001308198319748044 and parameters: {'n_layers': 7, 'n_units': 68, 'activation': 'elu', 'lr': 0.00153644125716096, 'optimizer': 'RAdam'}. Best is trial 14 with value: 0.0012559500755742192.
+Training model with trial #21 and params: {'n_layers': 7, 'n_units': 45, 'activation': 'elu', 'lr': 0.0016218476184814193, 'optimizer': 'RAdam'}
+[I 2025-05-10 16:44:00,105] Trial 21 finished with value: 0.0010904732625931501 and parameters: {'n_layers': 7, 'n_units': 45, 'activation': 'elu', 'lr': 0.0016218476184814193, 'optimizer': 'RAdam'}. Best is trial 21 with value: 0.0010904732625931501.
+Training model with trial #22 and params: {'n_layers': 9, 'n_units': 34, 'activation': 'elu', 'lr': 0.0006840503838616085, 'optimizer': 'RAdam'}
+[I 2025-05-10 17:05:01,198] Trial 22 finished with value: 0.000936022843234241 and parameters: {'n_layers': 9, 'n_units': 34, 'activation': 'elu', 'lr': 0.0006840503838616085, 'optimizer': 'RAdam'}. Best is trial 22 with value: 0.000936022843234241.
+Training model with trial #23 and params: {'n_layers': 9, 'n_units': 34, 'activation': 'elu', 'lr': 0.0007040745816460068, 'optimizer': 'RAdam'}
+[I 2025-05-10 17:32:19,735] Trial 23 finished with value: 0.0009278582292608917 and parameters: {'n_layers': 9, 'n_units': 34, 'activation': 'elu', 'lr': 0.0007040745816460068, 'optimizer': 'RAdam'}. Best is trial 23 with value: 0.0009278582292608917.
+Training model with trial #24 and params: {'n_layers': 9, 'n_units': 16, 'activation': 'leaky_relu', 'lr': 0.0019066324710068933, 'optimizer': 'RAdam'}
+[I 2025-05-10 18:01:26,988] Trial 24 finished with value: 0.0018530274974182248 and parameters: {'n_layers': 9, 'n_units': 16, 'activation': 'leaky_relu', 'lr': 0.0019066324710068933, 'optimizer': 'RAdam'}. Best is trial 23 with value: 0.0009278582292608917.
+Training model with trial #25 and params: {'n_layers': 9, 'n_units': 67, 'activation': 'selu', 'lr': 0.0011818182605705854, 'optimizer': 'adam'}
+[I 2025-05-10 18:20:42,331] Trial 25 finished with value: 0.0018780200043693185 and parameters: {'n_layers': 9, 'n_units': 67, 'activation': 'selu', 'lr': 0.0011818182605705854, 'optimizer': 'adam'}. Best is trial 23 with value: 0.0009278582292608917.
+Training model with trial #26 and params: {'n_layers': 10, 'n_units': 45, 'activation': 'elu', 'lr': 0.0007897131459511623, 'optimizer': 'AdamW'}
+[I 2025-05-10 18:34:18,224] Trial 26 finished with value: 0.04944966360926628 and parameters: {'n_layers': 10, 'n_units': 45, 'activation': 'elu', 'lr': 0.0007897131459511623, 'optimizer': 'AdamW'}. Best is trial 23 with value: 0.0009278582292608917.
+Training model with trial #27 and params: {'n_layers': 9, 'n_units': 107, 'activation': 'elu', 'lr': 0.002353990756166062, 'optimizer': 'RAdam'}
+[I 2025-05-10 19:05:03,876] Trial 27 finished with value: 0.003075189655646682 and parameters: {'n_layers': 9, 'n_units': 107, 'activation': 'elu', 'lr': 0.002353990756166062, 'optimizer': 'RAdam'}. Best is trial 23 with value: 0.0009278582292608917.
+Training model with trial #28 and params: {'n_layers': 6, 'n_units': 110, 'activation': 'swish', 'lr': 0.0002453501860942957, 'optimizer': 'RAdam'}
+[I 2025-05-10 20:25:10,984] Trial 28 finished with value: 0.0011905879946425557 and parameters: {'n_layers': 6, 'n_units': 110, 'activation': 'swish', 'lr': 0.0002453501860942957, 'optimizer': 'RAdam'}. Best is trial 23 with value: 0.0009278582292608917.
+Training model with trial #29 and params: {'n_layers': 6, 'n_units': 142, 'activation': 'elu', 'lr': 0.004409263080075653, 'optimizer': 'RAdam'}
+[I 2025-05-10 21:18:19,616] Trial 29 finished with value: 0.0028406688943505287 and parameters: {'n_layers': 6, 'n_units': 142, 'activation': 'elu', 'lr': 0.004409263080075653, 'optimizer': 'RAdam'}. Best is trial 23 with value: 0.0009278582292608917.
+Training model with trial #30 and params: {'n_layers': 9, 'n_units': 57, 'activation': 'elu', 'lr': 0.001162487563449849, 'optimizer': 'RAdam'}
+[I 2025-05-10 21:36:25,851] Trial 30 finished with value: 0.0014376860344782472 and parameters: {'n_layers': 9, 'n_units': 57, 'activation': 'elu', 'lr': 0.001162487563449849, 'optimizer': 'RAdam'}. Best is trial 23 with value: 0.0009278582292608917.
+Training model with trial #31 and params: {'n_layers': 6, 'n_units': 98, 'activation': 'swish', 'lr': 0.0002428385181045513, 'optimizer': 'RAdam'}
+[I 2025-05-10 23:05:55,030] Trial 31 finished with value: 0.0011687978403642774 and parameters: {'n_layers': 6, 'n_units': 98, 'activation': 'swish', 'lr': 0.0002428385181045513, 'optimizer': 'RAdam'}. Best is trial 23 with value: 0.0009278582292608917.
+Training model with trial #32 and params: {'n_layers': 4, 'n_units': 91, 'activation': 'swish', 'lr': 0.00027812454541592855, 'optimizer': 'RAdam'}
+[I 2025-05-11 00:53:09,364] Trial 32 finished with value: 0.0008725158404558897 and parameters: {'n_layers': 4, 'n_units': 91, 'activation': 'swish', 'lr': 0.00027812454541592855, 'optimizer': 'RAdam'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #33 and params: {'n_layers': 3, 'n_units': 20, 'activation': 'swish', 'lr': 0.0005238412161873578, 'optimizer': 'RAdam'}
+[I 2025-05-11 02:20:51,646] Trial 33 finished with value: 0.0036960712168365717 and parameters: {'n_layers': 3, 'n_units': 20, 'activation': 'swish', 'lr': 0.0005238412161873578, 'optimizer': 'RAdam'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #34 and params: {'n_layers': 4, 'n_units': 84, 'activation': 'relu', 'lr': 0.0007909323130692056, 'optimizer': 'sgd'}
+[I 2025-05-11 02:56:20,266] Trial 34 finished with value: 0.022253042086958885 and parameters: {'n_layers': 4, 'n_units': 84, 'activation': 'relu', 'lr': 0.0007909323130692056, 'optimizer': 'sgd'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #35 and params: {'n_layers': 3, 'n_units': 49, 'activation': 'tanh', 'lr': 0.0006770794827436886, 'optimizer': 'rmsprop'}
+[I 2025-05-11 03:12:24,455] Trial 35 finished with value: 0.0022422121837735176 and parameters: {'n_layers': 3, 'n_units': 49, 'activation': 'tanh', 'lr': 0.0006770794827436886, 'optimizer': 'rmsprop'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #36 and params: {'n_layers': 8, 'n_units': 130, 'activation': 'swish', 'lr': 0.00017839045827323466, 'optimizer': 'AdamW'}
+[I 2025-05-11 04:09:22,296] Trial 36 finished with value: 0.3607678711414337 and parameters: {'n_layers': 8, 'n_units': 130, 'activation': 'swish', 'lr': 0.00017839045827323466, 'optimizer': 'AdamW'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #37 and params: {'n_layers': 10, 'n_units': 330, 'activation': 'leaky_relu', 'lr': 0.0001012045066346839, 'optimizer': 'RAdam'}
+[I 2025-05-11 05:52:43,770] Trial 37 finished with value: 0.0024309693835675716 and parameters: {'n_layers': 10, 'n_units': 330, 'activation': 'leaky_relu', 'lr': 0.0001012045066346839, 'optimizer': 'RAdam'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #38 and params: {'n_layers': 3, 'n_units': 38, 'activation': 'tanh', 'lr': 0.0003061493073302646, 'optimizer': 'rmsprop'}
+[I 2025-05-11 06:13:04,763] Trial 38 finished with value: 0.004031706601381302 and parameters: {'n_layers': 3, 'n_units': 38, 'activation': 'tanh', 'lr': 0.0003061493073302646, 'optimizer': 'rmsprop'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #39 and params: {'n_layers': 7, 'n_units': 89, 'activation': 'relu', 'lr': 0.004074076140667669, 'optimizer': 'adam'}
+[I 2025-05-11 06:47:41,642] Trial 39 finished with value: 0.02441994473338127 and parameters: {'n_layers': 7, 'n_units': 89, 'activation': 'relu', 'lr': 0.004074076140667669, 'optimizer': 'adam'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #40 and params: {'n_layers': 10, 'n_units': 158, 'activation': 'selu', 'lr': 0.0018790795493179651, 'optimizer': 'sgd'}
+[I 2025-05-11 08:17:10,333] Trial 40 finished with value: 0.006734723225235939 and parameters: {'n_layers': 10, 'n_units': 158, 'activation': 'selu', 'lr': 0.0018790795493179651, 'optimizer': 'sgd'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #41 and params: {'n_layers': 6, 'n_units': 87, 'activation': 'swish', 'lr': 0.00027551065614016696, 'optimizer': 'RAdam'}
+[I 2025-05-11 09:31:12,060] Trial 41 finished with value: 0.0011152023216709495 and parameters: {'n_layers': 6, 'n_units': 87, 'activation': 'swish', 'lr': 0.00027551065614016696, 'optimizer': 'RAdam'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #42 and params: {'n_layers': 4, 'n_units': 50, 'activation': 'swish', 'lr': 0.0004214367861579986, 'optimizer': 'RAdam'}
+[I 2025-05-11 11:34:43,994] Trial 42 finished with value: 0.000900502665899694 and parameters: {'n_layers': 4, 'n_units': 50, 'activation': 'swish', 'lr': 0.0004214367861579986, 'optimizer': 'RAdam'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #43 and params: {'n_layers': 4, 'n_units': 45, 'activation': 'swish', 'lr': 0.0004621677039098817, 'optimizer': 'RAdam'}
+[I 2025-05-11 13:00:22,834] Trial 43 finished with value: 0.0011223528999835253 and parameters: {'n_layers': 4, 'n_units': 45, 'activation': 'swish', 'lr': 0.0004621677039098817, 'optimizer': 'RAdam'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #44 and params: {'n_layers': 5, 'n_units': 60, 'activation': 'sigmoid', 'lr': 0.00046851373188908573, 'optimizer': 'RAdam'}
+[I 2025-05-11 13:44:13,537] Trial 44 finished with value: 0.0012897124979645014 and parameters: {'n_layers': 5, 'n_units': 60, 'activation': 'sigmoid', 'lr': 0.00046851373188908573, 'optimizer': 'RAdam'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #45 and params: {'n_layers': 2, 'n_units': 18, 'activation': 'swish', 'lr': 0.0001501537671235599, 'optimizer': 'RAdam'}
+[I 2025-05-11 14:43:51,950] Trial 45 finished with value: 0.021474869921803474 and parameters: {'n_layers': 2, 'n_units': 18, 'activation': 'swish', 'lr': 0.0001501537671235599, 'optimizer': 'RAdam'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #46 and params: {'n_layers': 4, 'n_units': 117, 'activation': 'swish', 'lr': 0.0009349679234120717, 'optimizer': 'rmsprop'}
+[I 2025-05-11 15:53:04,068] Trial 46 finished with value: 0.0027997076977044344 and parameters: {'n_layers': 4, 'n_units': 117, 'activation': 'swish', 'lr': 0.0009349679234120717, 'optimizer': 'rmsprop'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #47 and params: {'n_layers': 5, 'n_units': 76, 'activation': 'gelu', 'lr': 0.00038364051426513474, 'optimizer': 'RAdam'}
+[I 2025-05-11 16:16:46,272] Trial 47 finished with value: 0.0009993077255785465 and parameters: {'n_layers': 5, 'n_units': 76, 'activation': 'gelu', 'lr': 0.00038364051426513474, 'optimizer': 'RAdam'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #48 and params: {'n_layers': 5, 'n_units': 426, 'activation': 'gelu', 'lr': 0.00041381895526404244, 'optimizer': 'sgd'}
+[I 2025-05-11 20:18:09,172] Trial 48 finished with value: 0.02524728514254093 and parameters: {'n_layers': 5, 'n_units': 426, 'activation': 'gelu', 'lr': 0.00041381895526404244, 'optimizer': 'sgd'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #49 and params: {'n_layers': 4, 'n_units': 86, 'activation': 'gelu', 'lr': 0.00034264176995970355, 'optimizer': 'RAdam'}
+[I 2025-05-11 20:40:39,781] Trial 49 finished with value: 0.0010915030725300312 and parameters: {'n_layers': 4, 'n_units': 86, 'activation': 'gelu', 'lr': 0.00034264176995970355, 'optimizer': 'RAdam'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #50 and params: {'n_layers': 3, 'n_units': 499, 'activation': 'gelu', 'lr': 0.0006390279730106855, 'optimizer': 'RAdam'}
+[I 2025-05-11 22:00:03,199] Trial 50 finished with value: 0.00130760099273175 and parameters: {'n_layers': 3, 'n_units': 499, 'activation': 'gelu', 'lr': 0.0006390279730106855, 'optimizer': 'RAdam'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #51 and params: {'n_layers': 4, 'n_units': 38, 'activation': 'elu', 'lr': 0.001392616226349606, 'optimizer': 'RAdam'}
+[I 2025-05-11 22:10:24,219] Trial 51 finished with value: 0.001152892131358385 and parameters: {'n_layers': 4, 'n_units': 38, 'activation': 'elu', 'lr': 0.001392616226349606, 'optimizer': 'RAdam'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #52 and params: {'n_layers': 5, 'n_units': 76, 'activation': 'sigmoid', 'lr': 0.001043237713088503, 'optimizer': 'RAdam'}
+[I 2025-05-11 22:41:36,287] Trial 52 finished with value: 0.0010194911155849695 and parameters: {'n_layers': 5, 'n_units': 76, 'activation': 'sigmoid', 'lr': 0.001043237713088503, 'optimizer': 'RAdam'}. Best is trial 32 with value: 0.0008725158404558897.
+Training model with trial #53 and params: {'n_layers': 5, 'n_units': 74, 'activation': 'sigmoid', 'lr': 0.00074065696934279, 'optimizer': 'RAdam'}
+[I 2025-05-11 23:09:07,385] Trial 53 finished with value: 0.0008625967311672866 and parameters: {'n_layers': 5, 'n_units': 74, 'activation': 'sigmoid', 'lr': 0.00074065696934279, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #54 and params: {'n_layers': 5, 'n_units': 118, 'activation': 'sigmoid', 'lr': 0.0005918293869740195, 'optimizer': 'RAdam'}
+[I 2025-05-11 23:45:17,968] Trial 54 finished with value: 0.0012836832320317626 and parameters: {'n_layers': 5, 'n_units': 118, 'activation': 'sigmoid', 'lr': 0.0005918293869740195, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #55 and params: {'n_layers': 4, 'n_units': 65, 'activation': 'sigmoid', 'lr': 0.0007270938362226716, 'optimizer': 'AdamW'}
+[I 2025-05-11 23:59:05,956] Trial 55 finished with value: 0.37038713693618774 and parameters: {'n_layers': 4, 'n_units': 65, 'activation': 'sigmoid', 'lr': 0.0007270938362226716, 'optimizer': 'AdamW'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #56 and params: {'n_layers': 6, 'n_units': 153, 'activation': 'gelu', 'lr': 0.0003347855375065407, 'optimizer': 'adam'}
+[I 2025-05-12 00:24:30,685] Trial 56 finished with value: 0.001772823859937489 and parameters: {'n_layers': 6, 'n_units': 153, 'activation': 'gelu', 'lr': 0.0003347855375065407, 'optimizer': 'adam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #57 and params: {'n_layers': 2, 'n_units': 33, 'activation': 'leaky_relu', 'lr': 0.00044307161261023713, 'optimizer': 'RAdam'}
+[I 2025-05-12 00:51:44,015] Trial 57 finished with value: 0.006185551173985004 and parameters: {'n_layers': 2, 'n_units': 33, 'activation': 'leaky_relu', 'lr': 0.00044307161261023713, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #58 and params: {'n_layers': 5, 'n_units': 223, 'activation': 'sigmoid', 'lr': 0.0005218876352713461, 'optimizer': 'RAdam'}
+[I 2025-05-12 01:43:19,946] Trial 58 finished with value: 0.001489913440309465 and parameters: {'n_layers': 5, 'n_units': 223, 'activation': 'sigmoid', 'lr': 0.0005218876352713461, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #59 and params: {'n_layers': 3, 'n_units': 97, 'activation': 'tanh', 'lr': 0.0002635002106115584, 'optimizer': 'RAdam'}
+[I 2025-05-12 02:18:51,111] Trial 59 finished with value: 0.0010768818901851773 and parameters: {'n_layers': 3, 'n_units': 97, 'activation': 'tanh', 'lr': 0.0002635002106115584, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #60 and params: {'n_layers': 5, 'n_units': 181, 'activation': 'relu', 'lr': 0.0009231634164830557, 'optimizer': 'RAdam'}
+[I 2025-05-12 02:43:16,785] Trial 60 finished with value: 0.0017184808384627104 and parameters: {'n_layers': 5, 'n_units': 181, 'activation': 'relu', 'lr': 0.0009231634164830557, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #61 and params: {'n_layers': 5, 'n_units': 74, 'activation': 'sigmoid', 'lr': 0.0010405816838078448, 'optimizer': 'RAdam'}
+[I 2025-05-12 03:09:39,636] Trial 61 finished with value: 0.0013830297393724322 and parameters: {'n_layers': 5, 'n_units': 74, 'activation': 'sigmoid', 'lr': 0.0010405816838078448, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #62 and params: {'n_layers': 5, 'n_units': 70, 'activation': 'sigmoid', 'lr': 0.0005742915961194507, 'optimizer': 'RAdam'}
+[I 2025-05-12 03:50:54,778] Trial 62 finished with value: 0.0010528294369578362 and parameters: {'n_layers': 5, 'n_units': 70, 'activation': 'sigmoid', 'lr': 0.0005742915961194507, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #63 and params: {'n_layers': 4, 'n_units': 54, 'activation': 'sigmoid', 'lr': 0.0003949905099245013, 'optimizer': 'RAdam'}
+[I 2025-05-12 04:33:01,952] Trial 63 finished with value: 0.0016977465711534023 and parameters: {'n_layers': 4, 'n_units': 54, 'activation': 'sigmoid', 'lr': 0.0003949905099245013, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #64 and params: {'n_layers': 6, 'n_units': 130, 'activation': 'sigmoid', 'lr': 0.0008061860347601847, 'optimizer': 'RAdam'}
+[I 2025-05-12 05:08:06,867] Trial 64 finished with value: 0.0013678829418495297 and parameters: {'n_layers': 6, 'n_units': 130, 'activation': 'sigmoid', 'lr': 0.0008061860347601847, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #65 and params: {'n_layers': 4, 'n_units': 29, 'activation': 'gelu', 'lr': 0.0007326170947532666, 'optimizer': 'RAdam'}
+[I 2025-05-12 05:24:29,368] Trial 65 finished with value: 0.0011572203366085887 and parameters: {'n_layers': 4, 'n_units': 29, 'activation': 'gelu', 'lr': 0.0007326170947532666, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #66 and params: {'n_layers': 6, 'n_units': 81, 'activation': 'swish', 'lr': 0.00135877500308618, 'optimizer': 'AdamW'}
+[I 2025-05-12 06:28:36,050] Trial 66 finished with value: 0.023884715512394905 and parameters: {'n_layers': 6, 'n_units': 81, 'activation': 'swish', 'lr': 0.00135877500308618, 'optimizer': 'AdamW'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #67 and params: {'n_layers': 9, 'n_units': 304, 'activation': 'selu', 'lr': 0.00108637716406956, 'optimizer': 'RAdam'}
+[I 2025-05-12 07:59:18,269] Trial 67 finished with value: 0.0017311943229287863 and parameters: {'n_layers': 9, 'n_units': 304, 'activation': 'selu', 'lr': 0.00108637716406956, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #68 and params: {'n_layers': 5, 'n_units': 107, 'activation': 'elu', 'lr': 0.00030859790781437475, 'optimizer': 'rmsprop'}
+[I 2025-05-12 08:23:19,108] Trial 68 finished with value: 0.0024245656095445156 and parameters: {'n_layers': 5, 'n_units': 107, 'activation': 'elu', 'lr': 0.00030859790781437475, 'optimizer': 'rmsprop'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #69 and params: {'n_layers': 4, 'n_units': 55, 'activation': 'swish', 'lr': 0.00020910724021252794, 'optimizer': 'adam'}
+[I 2025-05-12 10:16:20,157] Trial 69 finished with value: 0.0009374519577249885 and parameters: {'n_layers': 4, 'n_units': 55, 'activation': 'swish', 'lr': 0.00020910724021252794, 'optimizer': 'adam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #70 and params: {'n_layers': 3, 'n_units': 56, 'activation': 'swish', 'lr': 0.00021092782861028542, 'optimizer': 'adam'}
+[I 2025-05-12 12:20:13,540] Trial 70 finished with value: 0.0012132684933021665 and parameters: {'n_layers': 3, 'n_units': 56, 'activation': 'swish', 'lr': 0.00021092782861028542, 'optimizer': 'adam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #71 and params: {'n_layers': 4, 'n_units': 33, 'activation': 'swish', 'lr': 0.0001562969891932227, 'optimizer': 'adam'}
+[I 2025-05-12 14:32:15,371] Trial 71 finished with value: 0.0022002030164003372 and parameters: {'n_layers': 4, 'n_units': 33, 'activation': 'swish', 'lr': 0.0001562969891932227, 'optimizer': 'adam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #72 and params: {'n_layers': 5, 'n_units': 73, 'activation': 'swish', 'lr': 0.0008821265951473453, 'optimizer': 'adam'}
+[I 2025-05-12 15:16:12,436] Trial 72 finished with value: 0.0021083028987050056 and parameters: {'n_layers': 5, 'n_units': 73, 'activation': 'swish', 'lr': 0.0008821265951473453, 'optimizer': 'adam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #73 and params: {'n_layers': 4, 'n_units': 17, 'activation': 'elu', 'lr': 0.00022668950512003862, 'optimizer': 'adam'}
+[I 2025-05-12 15:50:16,080] Trial 73 finished with value: 0.004221756011247635 and parameters: {'n_layers': 4, 'n_units': 17, 'activation': 'elu', 'lr': 0.00022668950512003862, 'optimizer': 'adam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #74 and params: {'n_layers': 8, 'n_units': 97, 'activation': 'swish', 'lr': 0.0005516935517996943, 'optimizer': 'sgd'}
+[I 2025-05-12 21:05:13,766] Trial 74 finished with value: 0.02553650364279747 and parameters: {'n_layers': 8, 'n_units': 97, 'activation': 'swish', 'lr': 0.0005516935517996943, 'optimizer': 'sgd'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #75 and params: {'n_layers': 5, 'n_units': 48, 'activation': 'leaky_relu', 'lr': 0.0002869832297314904, 'optimizer': 'RAdam'}
+[I 2025-05-12 21:36:52,695] Trial 75 finished with value: 0.0014486962463706732 and parameters: {'n_layers': 5, 'n_units': 48, 'activation': 'leaky_relu', 'lr': 0.0002869832297314904, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #76 and params: {'n_layers': 4, 'n_units': 122, 'activation': 'sigmoid', 'lr': 0.00017905444934552872, 'optimizer': 'RAdam'}
+[I 2025-05-12 22:39:25,231] Trial 76 finished with value: 0.0014361902140080929 and parameters: {'n_layers': 4, 'n_units': 122, 'activation': 'sigmoid', 'lr': 0.00017905444934552872, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #77 and params: {'n_layers': 3, 'n_units': 145, 'activation': 'swish', 'lr': 0.008920002992916759, 'optimizer': 'adam'}
+[I 2025-05-12 23:20:58,275] Trial 77 finished with value: 0.0012579434551298618 and parameters: {'n_layers': 3, 'n_units': 145, 'activation': 'swish', 'lr': 0.008920002992916759, 'optimizer': 'adam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #78 and params: {'n_layers': 5, 'n_units': 61, 'activation': 'elu', 'lr': 0.0006652281356108881, 'optimizer': 'RAdam'}
+[I 2025-05-12 23:53:30,641] Trial 78 finished with value: 0.0009178633335977793 and parameters: {'n_layers': 5, 'n_units': 61, 'activation': 'elu', 'lr': 0.0006652281356108881, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #79 and params: {'n_layers': 10, 'n_units': 56, 'activation': 'elu', 'lr': 0.00036042419029502846, 'optimizer': 'RAdam'}
+[I 2025-05-13 00:17:57,523] Trial 79 finished with value: 0.0013539684005081654 and parameters: {'n_layers': 10, 'n_units': 56, 'activation': 'elu', 'lr': 0.00036042419029502846, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #80 and params: {'n_layers': 9, 'n_units': 31, 'activation': 'elu', 'lr': 0.0006302892180450974, 'optimizer': 'RAdam'}
+[I 2025-05-13 00:42:54,587] Trial 80 finished with value: 0.0009763569687493145 and parameters: {'n_layers': 9, 'n_units': 31, 'activation': 'elu', 'lr': 0.0006302892180450974, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #81 and params: {'n_layers': 9, 'n_units': 29, 'activation': 'elu', 'lr': 0.000668700934537364, 'optimizer': 'RAdam'}
+[I 2025-05-13 00:54:58,582] Trial 81 finished with value: 0.0013679133262485266 and parameters: {'n_layers': 9, 'n_units': 29, 'activation': 'elu', 'lr': 0.000668700934537364, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #82 and params: {'n_layers': 9, 'n_units': 44, 'activation': 'elu', 'lr': 0.000487231929562148, 'optimizer': 'RAdam'}
+[I 2025-05-13 01:15:01,141] Trial 82 finished with value: 0.0010668545728549361 and parameters: {'n_layers': 9, 'n_units': 44, 'activation': 'elu', 'lr': 0.000487231929562148, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #83 and params: {'n_layers': 8, 'n_units': 377, 'activation': 'elu', 'lr': 0.0006119796984629647, 'optimizer': 'RAdam'}
+[I 2025-05-13 03:43:25,045] Trial 83 finished with value: 0.00127986294683069 and parameters: {'n_layers': 8, 'n_units': 377, 'activation': 'elu', 'lr': 0.0006119796984629647, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #84 and params: {'n_layers': 9, 'n_units': 63, 'activation': 'elu', 'lr': 0.00040278461254494705, 'optimizer': 'RAdam'}
+[I 2025-05-13 03:58:18,570] Trial 84 finished with value: 0.0012033402454108 and parameters: {'n_layers': 9, 'n_units': 63, 'activation': 'elu', 'lr': 0.00040278461254494705, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #85 and params: {'n_layers': 10, 'n_units': 92, 'activation': 'elu', 'lr': 0.0007412693598448983, 'optimizer': 'RAdam'}
+[I 2025-05-13 04:13:38,916] Trial 85 finished with value: 0.0015675619943067431 and parameters: {'n_layers': 10, 'n_units': 92, 'activation': 'elu', 'lr': 0.0007412693598448983, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #86 and params: {'n_layers': 7, 'n_units': 16, 'activation': 'elu', 'lr': 0.00043795468225666864, 'optimizer': 'rmsprop'}
+[I 2025-05-13 04:41:22,590] Trial 86 finished with value: 0.00653135497123003 and parameters: {'n_layers': 7, 'n_units': 16, 'activation': 'elu', 'lr': 0.00043795468225666864, 'optimizer': 'rmsprop'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #87 and params: {'n_layers': 4, 'n_units': 35, 'activation': 'gelu', 'lr': 0.0003266730193115617, 'optimizer': 'RAdam'}
+[I 2025-05-13 05:06:55,855] Trial 87 finished with value: 0.0011623748578131199 and parameters: {'n_layers': 4, 'n_units': 35, 'activation': 'gelu', 'lr': 0.0003266730193115617, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #88 and params: {'n_layers': 8, 'n_units': 83, 'activation': 'relu', 'lr': 0.0005210030512770833, 'optimizer': 'AdamW'}
+[I 2025-05-13 05:16:49,667] Trial 88 finished with value: 0.05738791450858116 and parameters: {'n_layers': 8, 'n_units': 83, 'activation': 'relu', 'lr': 0.0005210030512770833, 'optimizer': 'AdamW'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #89 and params: {'n_layers': 9, 'n_units': 51, 'activation': 'tanh', 'lr': 0.000669865382963933, 'optimizer': 'sgd'}
+[I 2025-05-13 05:58:41,257] Trial 89 finished with value: 0.03637431189417839 and parameters: {'n_layers': 9, 'n_units': 51, 'activation': 'tanh', 'lr': 0.000669865382963933, 'optimizer': 'sgd'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #90 and params: {'n_layers': 6, 'n_units': 102, 'activation': 'selu', 'lr': 0.0003744240744467838, 'optimizer': 'RAdam'}
+[I 2025-05-13 06:44:39,411] Trial 90 finished with value: 0.0011055156355723739 and parameters: {'n_layers': 6, 'n_units': 102, 'activation': 'selu', 'lr': 0.0003744240744467838, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #91 and params: {'n_layers': 5, 'n_units': 76, 'activation': 'swish', 'lr': 0.0008509715681408754, 'optimizer': 'RAdam'}
+[I 2025-05-13 07:48:06,687] Trial 91 finished with value: 0.0011924058198928833 and parameters: {'n_layers': 5, 'n_units': 76, 'activation': 'swish', 'lr': 0.0008509715681408754, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #92 and params: {'n_layers': 5, 'n_units': 42, 'activation': 'elu', 'lr': 0.0010229053957157954, 'optimizer': 'RAdam'}
+[I 2025-05-13 07:59:11,543] Trial 92 finished with value: 0.0015772986225783825 and parameters: {'n_layers': 5, 'n_units': 42, 'activation': 'elu', 'lr': 0.0010229053957157954, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #93 and params: {'n_layers': 5, 'n_units': 63, 'activation': 'sigmoid', 'lr': 0.0012717778187910271, 'optimizer': 'RAdam'}
+[I 2025-05-13 08:24:15,339] Trial 93 finished with value: 0.0013894618023186922 and parameters: {'n_layers': 5, 'n_units': 63, 'activation': 'sigmoid', 'lr': 0.0012717778187910271, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #94 and params: {'n_layers': 4, 'n_units': 29, 'activation': 'gelu', 'lr': 0.000738198368293485, 'optimizer': 'RAdam'}
+[I 2025-05-13 08:46:23,943] Trial 94 finished with value: 0.0011689966777339578 and parameters: {'n_layers': 4, 'n_units': 29, 'activation': 'gelu', 'lr': 0.000738198368293485, 'optimizer': 'RAdam'}. Best is trial 53 with value: 0.0008625967311672866.
+Training model with trial #95 and params: {'n_layers': 6, 'n_units': 73, 'activation': 'elu', 'lr': 0.0002475154021748114, 'optimizer': 'RAdam'}
+[I 2025-05-13 09:20:32,300] Trial 95 finished with value: 0.0008276471053250134 and parameters: {'n_layers': 6, 'n_units': 73, 'activation': 'elu', 'lr': 0.0002475154021748114, 'optimizer': 'RAdam'}. Best is trial 95 with value: 0.0008276471053250134.
+Training model with trial #96 and params: {'n_layers': 3, 'n_units': 66, 'activation': 'elu', 'lr': 0.00025428816765282996, 'optimizer': 'RAdam'}
+[I 2025-05-13 09:47:32,243] Trial 96 finished with value: 0.001063646050170064 and parameters: {'n_layers': 3, 'n_units': 66, 'activation': 'elu', 'lr': 0.00025428816765282996, 'optimizer': 'RAdam'}. Best is trial 95 with value: 0.0008276471053250134.
+Training model with trial #97 and params: {'n_layers': 8, 'n_units': 112, 'activation': 'elu', 'lr': 0.0001273861811664777, 'optimizer': 'adam'}
+[I 2025-05-13 10:10:30,065] Trial 97 finished with value: 0.001521485741250217 and parameters: {'n_layers': 8, 'n_units': 112, 'activation': 'elu', 'lr': 0.0001273861811664777, 'optimizer': 'adam'}. Best is trial 95 with value: 0.0008276471053250134.
+Training model with trial #98 and params: {'n_layers': 6, 'n_units': 258, 'activation': 'elu', 'lr': 0.00022448913598993632, 'optimizer': 'RAdam'}
+[I 2025-05-13 10:52:30,087] Trial 98 finished with value: 0.0013386656064540148 and parameters: {'n_layers': 6, 'n_units': 258, 'activation': 'elu', 'lr': 0.00022448913598993632, 'optimizer': 'RAdam'}. Best is trial 95 with value: 0.0008276471053250134.
+Training model with trial #99 and params: {'n_layers': 9, 'n_units': 25, 'activation': 'swish', 'lr': 0.0002971348004941889, 'optimizer': 'RAdam'}
+[I 2025-05-13 13:40:31,844] Trial 99 finished with value: 0.0013269836781546474 and parameters: {'n_layers': 9, 'n_units': 25, 'activation': 'swish', 'lr': 0.0002971348004941889, 'optimizer': 'RAdam'}. Best is trial 95 with value: 0.0008276471053250134.
+Beste Parameter:
+{'n_layers': 6, 'n_units': 73, 'activation': 'elu', 'lr': 0.0002475154021748114, 'optimizer': 'RAdam'}

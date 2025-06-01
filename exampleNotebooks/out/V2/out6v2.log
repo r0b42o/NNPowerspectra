@@ -1,0 +1,94 @@
+nohup: ignoring input
+2025-05-14 23:09:37.079649: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-14 23:09:37.081490: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2025-05-14 23:09:37.123259: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2025-05-14 23:09:37.123727: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-05-14 23:09:38.820454: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+/home/rhoffmann/.local/lib/python3.10/site-packages/tensorflow_addons/utils/tfa_eol_msg.py:23: UserWarning: 
+
+TensorFlow Addons (TFA) has ended development and introduction of new features.
+TFA has entered a minimal maintenance and release mode until a planned end of life in May 2024.
+Please modify downstream libraries to take dependencies from other repositories in our TensorFlow community (e.g. Keras, Keras-CV, and Keras-NLP). 
+
+For more information see: https://github.com/tensorflow/addons/issues/2807 
+
+  warnings.warn(
+WARNING:tensorflow:From /home/rhoffmann/G3LHalo_python/exampleNotebooks/GMNN_Bayesian_Optimization1.py:53: is_gpu_available (from tensorflow.python.framework.test_util) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.config.list_physical_devices('GPU')` instead.
+using cpu device 
+
+Number of test samples is 7500, should be 7500
+Number of validation samples is 7500, should be 7500
+Number of train samples is 35000, should be 35000
+/home/rhoffmann/G3LHalo_python/exampleNotebooks/GMNN_Bayesian_Optimization1.py:106: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axes.legend()
+number of training targets: 35000 . Should be 35000
+number of validation targets: 7500 . Should be 7500
+number of test targets: 7500 . Should be 7500
+Shape of training targets: (3, 35000, 50). Should be (3, 35000, 50)
+Shape of testing targets: (3, 7500, 50). Should be (3, 7500, 50)
+Shape of validation targets: (3, 7500, 50). Should be (3, 7500, 50)
+input min/max: 1.168300956697601e-06 16.999974244680363
+number of training features: 35000 . Should be 35000
+number of validation features: 7500 . Should be 7500
+number of test features: 7500 . Should be 7500
+Train Rescaled Shape: (3, 35000, 50)
+Test Rescaled Shape: (3, 7500, 50)
+Val Rescaled Shape: (3, 7500, 50)
+Train Rescaled Shape: (35000, 10)
+Test Rescaled Shape: (7500, 10)
+Val Rescaled Shape: (7500, 10)
+[I 2025-05-14 23:09:52,198] A new study created in memory with name: no-name-7a5f00c7-5955-47a3-8555-519b7f22bb6a
+Training model with params: layers=7, units=272, activation=swish, optimizer=RAdam, lr=0.008658307087591778
+Finish Trainingstep 1 of 3 with lr=0.008658307087591778 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.008658307087591778 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.008658307087591778 and 10000 epochs
+2025-05-15_08-31-59
+[I 2025-05-15 08:31:59,601] Trial 0 finished with value: 1.0253795385360718 and parameters: {'n_layers': 7, 'n_units': 272, 'activation': 'swish', 'lr': 0.008658307087591778, 'optimizer': 'RAdam'}. Best is trial 0 with value: 1.0253795385360718.
+Training model with params: layers=4, units=119, activation=swish, optimizer=rmsprop, lr=0.004535444637586515
+Finish Trainingstep 1 of 3 with lr=0.004535444637586515 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.004535444637586515 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.004535444637586515 and 10000 epochs
+2025-05-15_10-22-52
+[I 2025-05-15 10:22:53,007] Trial 1 finished with value: 0.002278381260111928 and parameters: {'n_layers': 4, 'n_units': 119, 'activation': 'swish', 'lr': 0.004535444637586515, 'optimizer': 'rmsprop'}. Best is trial 1 with value: 0.002278381260111928.
+Training model with params: layers=3, units=236, activation=leaky_relu, optimizer=sgd, lr=0.0002455298501838256
+Finish Trainingstep 1 of 3 with lr=0.0002455298501838256 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.0002455298501838256 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.0002455298501838256 and 10000 epochs
+2025-05-15_15-33-28
+[I 2025-05-15 15:33:28,719] Trial 2 finished with value: 0.017047693952918053 and parameters: {'n_layers': 3, 'n_units': 236, 'activation': 'leaky_relu', 'lr': 0.0002455298501838256, 'optimizer': 'sgd'}. Best is trial 1 with value: 0.002278381260111928.
+Training model with params: layers=4, units=184, activation=leaky_relu, optimizer=RAdam, lr=0.0005433319881676432
+Finish Trainingstep 1 of 3 with lr=0.0005433319881676432 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.0005433319881676432 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.0005433319881676432 and 10000 epochs
+2025-05-15_17-18-50
+[I 2025-05-15 17:18:50,731] Trial 3 finished with value: 0.0029736135620623827 and parameters: {'n_layers': 4, 'n_units': 184, 'activation': 'leaky_relu', 'lr': 0.0005433319881676432, 'optimizer': 'RAdam'}. Best is trial 1 with value: 0.002278381260111928.
+Training model with params: layers=3, units=406, activation=relu, optimizer=rmsprop, lr=0.0006660925554793043
+Finish Trainingstep 1 of 3 with lr=0.0006660925554793043 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.0006660925554793043 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.0006660925554793043 and 10000 epochs
+2025-05-16_00-54-21
+[I 2025-05-16 00:54:22,274] Trial 4 finished with value: 0.004496632609516382 and parameters: {'n_layers': 3, 'n_units': 406, 'activation': 'relu', 'lr': 0.0006660925554793043, 'optimizer': 'rmsprop'}. Best is trial 1 with value: 0.002278381260111928.
+Training model with params: layers=4, units=274, activation=leaky_relu, optimizer=AdamW, lr=0.0006096960308736898
+Finish Trainingstep 1 of 3 with lr=0.0006096960308736898 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.0006096960308736898 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.0006096960308736898 and 10000 epochs
+2025-05-16_01-55-45
+[I 2025-05-16 01:55:45,564] Trial 5 finished with value: 0.010919411666691303 and parameters: {'n_layers': 4, 'n_units': 274, 'activation': 'leaky_relu', 'lr': 0.0006096960308736898, 'optimizer': 'AdamW'}. Best is trial 1 with value: 0.002278381260111928.
+Training model with params: layers=4, units=149, activation=gelu, optimizer=sgd, lr=0.00024323391561409784
+Finish Trainingstep 1 of 3 with lr=0.00024323391561409784 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.00024323391561409784 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.00024323391561409784 and 10000 epochs
+2025-05-16_07-48-15
+[I 2025-05-16 07:48:16,248] Trial 6 finished with value: 0.01554326992481947 and parameters: {'n_layers': 4, 'n_units': 149, 'activation': 'gelu', 'lr': 0.00024323391561409784, 'optimizer': 'sgd'}. Best is trial 1 with value: 0.002278381260111928.
+Training model with params: layers=2, units=326, activation=swish, optimizer=adam, lr=0.002833439196855724
+Finish Trainingstep 1 of 3 with lr=0.002833439196855724 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.002833439196855724 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.002833439196855724 and 10000 epochs
+2025-05-16_09-55-23
+[I 2025-05-16 09:55:24,229] Trial 7 finished with value: 0.0026778962928801775 and parameters: {'n_layers': 2, 'n_units': 326, 'activation': 'swish', 'lr': 0.002833439196855724, 'optimizer': 'adam'}. Best is trial 1 with value: 0.002278381260111928.
+Training model with params: layers=9, units=441, activation=tanh, optimizer=adam, lr=0.00039332883506108904
+Finish Trainingstep 1 of 3 with lr=0.00039332883506108904 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.00039332883506108904 and 1000 epochs

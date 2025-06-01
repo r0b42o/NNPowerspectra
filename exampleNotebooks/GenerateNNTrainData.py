@@ -17,6 +17,7 @@ import json
 import os
 from datetime import datetime
 
+
 # %%
 #%pip install pyDOE
 
@@ -34,7 +35,7 @@ tf.random.set_seed(9721)
 # ## Calculating dataset
 
 # %%
-N_total = 50000
+N_total = 1000000
 num_params = 10
 
 data_array = np.empty((N_total, num_params), dtype=object)
@@ -51,7 +52,7 @@ param_intervals = {
     'alpha': (0, 1),
     'sigma': (0.01, 1),
     'Mth': (Mth_min, Mth_max),
-    'Mprime': (Mth_min * 1, Mth_max * 100),
+    'Mprime': (Mth_min * 1, Mth_max * 5),
     'beta': (0.1, 2)
 }
 
@@ -99,67 +100,86 @@ Pk_ll_2h = [8] * 50
 Pk_ll = [9] * 50
 Pk_lin = [10] * 50
 
+import sys
+
+class SuppressPrint:
+    def __enter__(self):
+        self._original_stdout = sys.stdout
+        sys.stdout = open(os.devnull, 'w')
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        sys.stdout.close()
+        sys.stdout = self._original_stdout
+
+start = os.times()
 # Hauptschleife für Simulationen
 for i in range(N_total):
-    # Kosmologische Parameter aus LHS entnehmen
-    cosmo = cosmo_samples[i]
-    cosmo_array = np.array(list(cosmo.values()))
+    with SuppressPrint():
+        # Kosmologische Parameter aus LHS entnehmen
+        cosmo = cosmo_samples[i]
+        cosmo_array = np.array(list(cosmo.values()))
 
-    # Nur die 5 kosmologischen Parameter für das Modell extrahieren
-    cosmo_subset = {
-        key: cosmo[key] for key in ['Om_c', 'Om_b', 'h', 'sigma_8', 'n_s']
-    }
+        # Nur die 5 kosmologischen Parameter für das Modell extrahieren
+        cosmo_subset = {
+            key: cosmo[key] for key in ['Om_c', 'Om_b', 'h', 'sigma_8', 'n_s']
+        }
 
-    # HOD-Parameter extrahieren
-    alpha = cosmo['alpha']
-    sigma = cosmo['sigma']
-    Mth = cosmo['Mth']
-    Mprime = cosmo['Mprime']
-    beta = cosmo['beta']
+        # HOD-Parameter extrahieren
+        alpha = cosmo['alpha']
+        sigma = cosmo['sigma']
+        Mth = cosmo['Mth']
+        Mprime = cosmo['Mprime']
+        beta = cosmo['beta']
 
 
-    # HOD abrufen
-    hod_cen, hod_sat = g3lhalo.HOD_Zheng(alpha, Mth, sigma, Mprime, beta)
+        # HOD abrufen
+        hod_cen, hod_sat = g3lhalo.HOD_Zheng(alpha, Mth, sigma, Mprime, beta)
 
-    # Modell definieren
-    model = g3lhalo.halomodel(verbose=True, cosmo=cosmo_subset, hmfunc=hmf, hbfunc=hbf, cmfunc=cmfunc)
-    model.set_hods(hod_cen, hod_sat, A=A, epsilon=epsilon, flens1=flens, flens2=flens)
+        # Modell definieren
+        model = g3lhalo.halomodel(verbose=True, cosmo=cosmo_subset, hmfunc=hmf, hbfunc=hbf, cmfunc=cmfunc)
+        model.set_hods(hod_cen, hod_sat, A=A, epsilon=epsilon, flens1=flens, flens2=flens)
 
-    # Berechnungen durchführen
-    ks = np.geomspace(1e-2, 1e2)
-    z = 0
+        # Berechnungen durchführen
+        ks = np.geomspace(1e-2, 1e2)
+        z = 0
 
-    # Lineares Materie-Leistungsspektrum
-    Pk_lin = model.pk_lin(ks, z)
+        # Lineares Materie-Leistungsspektrum
+        Pk_lin = model.pk_lin(ks, z)
 
-    # Materie-Materie Leistungsspektrum
-    Pk_ss_1h, Pk_ss_2h, Pk_ss = model.source_source_ps(ks, z)
+        # Materie-Materie Leistungsspektrum
+        Pk_ss_1h, Pk_ss_2h, Pk_ss = model.source_source_ps(ks, z)
 
-    # Materie-Galaxie Leistungsspektrum
-    Pk_sl_1h, Pk_sl_2h, Pk_sl = model.source_lens_ps(ks, z, type=1)
+        # Materie-Galaxie Leistungsspektrum
+        Pk_sl_1h, Pk_sl_2h, Pk_sl = model.source_lens_ps(ks, z, type=1)
 
-    # Galaxie-Galaxie Leistungsspektrum
-    Pk_ll_1h, Pk_ll_2h, Pk_ll = model.lens_lens_ps(ks, z, type1=1, type2=1)
-    
+        # Galaxie-Galaxie Leistungsspektrum
+        Pk_ll_1h, Pk_ll_2h, Pk_ll = model.lens_lens_ps(ks, z, type1=1, type2=1)
+        
 
-    # Erstelle das Dictionary mit den Daten für das aktuelle Sample
-    data_dict = {
-        'Pk_ss_1h': Pk_ss_1h,
-        'Pk_ss_2h': Pk_ss_2h,
-        'Pk_ss': Pk_ss,
-        'Pk_sl_1h': Pk_sl_1h,
-        'Pk_sl_2h': Pk_sl_2h,
-        'Pk_sl': Pk_sl,
-        'Pk_ll_1h': Pk_ll_1h,
-        'Pk_ll_2h': Pk_ll_2h,
-        'Pk_ll': Pk_ll,
-        'Pk_lin': Pk_lin,
-    }
-    
-    # Füge das Dictionary für dieses Sample der Liste hinzu
-    data_array.append(data_dict)
+        # Erstelle das Dictionary mit den Daten für das aktuelle Sample
+        data_dict = {
+            'Pk_ss_1h': Pk_ss_1h,
+            'Pk_ss_2h': Pk_ss_2h,
+            'Pk_ss': Pk_ss,
+            'Pk_sl_1h': Pk_sl_1h,
+            'Pk_sl_2h': Pk_sl_2h,
+            'Pk_sl': Pk_sl,
+            'Pk_ll_1h': Pk_ll_1h,
+            'Pk_ll_2h': Pk_ll_2h,
+            'Pk_ll': Pk_ll,
+            'Pk_lin': Pk_lin,
+        }
+        
+        # Füge das Dictionary für dieses Sample der Liste hinzu
+        data_array.append(data_dict)
 
-    print(f"Run {i+1}/{N_total} completed")
+        print(f"Run {i+1}/{N_total} completed")
+end = os.times()
+
+user_time = end.user - start.user
+system_time = end.system - start.system
+total_cpu_time = user_time + system_time
+
+print(f"CPU-Zeit: user = {user_time:.4f}s, system = {system_time:.4f}s, total = {total_cpu_time:.4f}s")
 
 
 # %% [markdown]
@@ -189,7 +209,7 @@ os.makedirs(data_dir, exist_ok=True)
 
 # Erzeuge einen einzigartigen Dateinamen mit Zeitstempel
 timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-data_fn = f"{data_dir}/GeneratedData_{num_data_points}_{timestamp}.json"
+data_fn = f"{data_dir}/GeneratedData_{num_data_points}_{timestamp}_Mprime1_5.json"
 
 # Speichern der Daten
 with open(data_fn, "w") as json_file:
@@ -202,7 +222,7 @@ print(f"Daten erfolgreich gespeichert in: {data_fn}")
 # ## Saving related parameter
 
 # %%
-para_fn = f"{data_dir}/Parameter_{num_data_points}_{timestamp}.json"
+para_fn = f"{data_dir}/Parameter_{num_data_points}_{timestamp}_Mprime1_5.json"
 # Speichern der Daten
 with open(para_fn, "w") as json_file:
     json.dump(cosmo_samples, json_file, indent=4)

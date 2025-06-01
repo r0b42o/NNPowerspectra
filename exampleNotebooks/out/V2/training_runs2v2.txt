@@ -1,0 +1,10 @@
+2025-05-15_00-58-32 loss=0.000531, validation loss=0.003784, train_mae=0.014328, val_mae=0.016678, params={'n_layers': 3, 'n_units': 319, 'activation': 'elu', 'optimizer': 'RAdam', 'lr': 0.0014618228080962678}
+2025-05-15_07-17-14 loss=0.000073, validation loss=0.004327, train_mae=0.005818, val_mae=0.010737, params={'n_layers': 10, 'n_units': 317, 'activation': 'selu', 'optimizer': 'RAdam', 'lr': 0.00010283654331765553}
+2025-05-15_08-20-43 loss=0.158947, validation loss=0.164912, train_mae=0.257640, val_mae=0.258534, params={'n_layers': 7, 'n_units': 151, 'activation': 'sigmoid', 'optimizer': 'AdamW', 'lr': 0.0005240064269200646}
+2025-05-15_09-18-25 loss=0.027455, validation loss=0.030045, train_mae=0.062202, val_mae=0.062793, params={'n_layers': 2, 'n_units': 151, 'activation': 'tanh', 'optimizer': 'AdamW', 'lr': 0.0003449756413495359}
+2025-05-15_10-27-11 loss=0.009434, validation loss=0.009634, train_mae=0.030441, val_mae=0.030189, params={'n_layers': 5, 'n_units': 87, 'activation': 'gelu', 'optimizer': 'AdamW', 'lr': 0.0025952575445961626}
+2025-05-15_17-13-07 loss=0.000056, validation loss=0.005113, train_mae=0.004236, val_mae=0.009522, params={'n_layers': 3, 'n_units': 504, 'activation': 'tanh', 'optimizer': 'RAdam', 'lr': 0.000648833573646599}
+2025-05-15_22-13-42 loss=0.000226, validation loss=0.001429, train_mae=0.005312, val_mae=0.006614, params={'n_layers': 6, 'n_units': 476, 'activation': 'gelu', 'optimizer': 'RAdam', 'lr': 0.00014343986047172226}
+2025-05-15_23-45-01 loss=0.000118, validation loss=0.004143, train_mae=0.007208, val_mae=0.011245, params={'n_layers': 6, 'n_units': 111, 'activation': 'relu', 'optimizer': 'rmsprop', 'lr': 0.0009231323527402857}
+2025-05-16_03-35-17 loss=0.000079, validation loss=0.005435, train_mae=0.005503, val_mae=0.011945, params={'n_layers': 8, 'n_units': 127, 'activation': 'relu', 'optimizer': 'adam', 'lr': 0.00013742787928885017}
+2025-05-16_09-10-36 loss=0.002362, validation loss=0.006563, train_mae=0.033947, val_mae=0.038067, params={'n_layers': 9, 'n_units': 85, 'activation': 'selu', 'optimizer': 'sgd', 'lr': 0.0007710217626647407}
