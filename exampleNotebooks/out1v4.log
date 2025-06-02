@@ -45,3 +45,21 @@ using random seed:  606653
 Training model with params: layers=4, units=264, activation=relu, optimizer=RAdam, lr=0.003055361561259578, batchsize=577
 Finish Trainingstep 1 of 3 with lr=0.003055361561259578 and 1000 epochs
 Finish Trainingstep 2 of 3 with lr=0.003055361561259578 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.003055361561259578 and 10000 epochs
+2025-06-01_17-47-38
+[I 2025-06-01 17:47:38,151] Trial 0 finished with value: 0.004472347907721996 and parameters: {'n_layers': 4, 'n_units': 264, 'activation': 'relu', 'lr': 0.003055361561259578, 'optimizer': 'RAdam', 'batch_size': 577}. Best is trial 0 with value: 0.004472347907721996.
+Training model with params: layers=1, units=689, activation=relu, optimizer=rmsprop, lr=0.0009167706046389767, batchsize=411
+Finish Trainingstep 1 of 3 with lr=0.0009167706046389767 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.0009167706046389767 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.0009167706046389767 and 10000 epochs
+2025-06-01_18-20-53
+[I 2025-06-01 18:20:53,961] Trial 1 finished with value: 0.004714249167591333 and parameters: {'n_layers': 1, 'n_units': 689, 'activation': 'relu', 'lr': 0.0009167706046389767, 'optimizer': 'rmsprop', 'batch_size': 411}. Best is trial 0 with value: 0.004472347907721996.
+Training model with params: layers=5, units=801, activation=gelu, optimizer=adam, lr=0.002140042297605918, batchsize=40
+Finish Trainingstep 1 of 3 with lr=0.002140042297605918 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.002140042297605918 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.002140042297605918 and 10000 epochs
+2025-06-02_06-17-13
+[I 2025-06-02 06:17:13,940] Trial 2 finished with value: 0.0010144067928195 and parameters: {'n_layers': 5, 'n_units': 801, 'activation': 'gelu', 'lr': 0.002140042297605918, 'optimizer': 'adam', 'batch_size': 40}. Best is trial 2 with value: 0.0010144067928195.
+Training model with params: layers=7, units=390, activation=relu, optimizer=RAdam, lr=0.00023567349338899797, batchsize=488
+Finish Trainingstep 1 of 3 with lr=0.00023567349338899797 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.00023567349338899797 and 1000 epochs

@@ -10,3 +10,8 @@ Instructions for updating:
 Use `tf.config.list_physical_devices('GPU')` instead.
 using cpu device 
 
+/home/rhoffmann/.local/lib/python3.10/site-packages/g3lhalo/halomodel.py:508: IntegrationWarning: The algorithm does not converge.  Roundoff error is detected
+  in the extrapolation table.  It is assumed that the requested tolerance
+  cannot be achieved, and that the returned result (if full_output = 1) is 
+  the best which can be obtained.
+  A = integrate.quad(kernel_A, mmin, mmax, epsrel=epsrel)[0]

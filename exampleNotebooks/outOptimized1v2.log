@@ -1,10 +1,10 @@
 nohup: ignoring input
-2025-06-01 15:14:54.818142: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-06-01 15:14:54.821384: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
-2025-06-01 15:14:54.872037: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
-2025-06-01 15:14:54.873245: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+2025-06-01 22:56:32.479709: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-06-01 22:56:32.481950: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2025-06-01 22:56:32.522962: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2025-06-01 22:56:32.523470: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2025-06-01 15:14:57.240427: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2025-06-01 22:56:34.512960: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
 /home/rhoffmann/.local/lib/python3.10/site-packages/tensorflow_addons/utils/tfa_eol_msg.py:23: UserWarning: 
 
 TensorFlow Addons (TFA) has ended development and introduction of new features.
@@ -40,5 +40,29 @@ Val Rescaled Shape: (3, 10500, 50)
 Train Rescaled Shape: (49000, 10)
 Test Rescaled Shape: (10500, 10)
 Val Rescaled Shape: (10500, 10)
-[I 2025-06-01 15:15:17,874] A new study created in memory with name: no-name-a97b51fa-3e70-4048-b381-6b64bbf53129
-Training model with params: layers=7, units=[150, 150, 150, 150, 150, 150, 150], activation=sigmoid, optimizer=RectifiedAdam, lr=1.4789235506891517e-06, batchsize=944
+[I 2025-06-01 22:56:54,910] A new study created in memory with name: no-name-4027997b-c65c-452c-b818-4115f7762a44
+Training model with params: layers=7, units=[150, 150, 150, 150, 150, 150, 150], activation=sigmoid, optimizer=RectifiedAdam, lr=1.5112945835037906e-06, batchsize=1676
+Finish Trainingstep 10 of 1 with lr=1.5112945835037906e-06 and 7039 epochs
+2025-06-02_00-38-16
+[I 2025-06-02 00:38:17,087] Trial 0 finished with value: 0.0013648074818775058 and parameters: {'lr': 1.5112945835037906e-06, 'epochs': 7039, 'batch_size': 1676}. Best is trial 0 with value: 0.0013648074818775058.
+Training model with params: layers=7, units=[150, 150, 150, 150, 150, 150, 150], activation=sigmoid, optimizer=RectifiedAdam, lr=2.3521915824398387e-05, batchsize=1808
+Finish Trainingstep 10 of 1 with lr=2.3521915824398387e-05 and 17469 epochs
+2025-06-02_04-35-52
+[I 2025-06-02 04:35:52,559] Trial 1 finished with value: 0.0005560918361879885 and parameters: {'lr': 2.3521915824398387e-05, 'epochs': 17469, 'batch_size': 1808}. Best is trial 1 with value: 0.0005560918361879885.
+Training model with params: layers=7, units=[150, 150, 150, 150, 150, 150, 150], activation=sigmoid, optimizer=RectifiedAdam, lr=9.567237437267024e-06, batchsize=190
+Finish Trainingstep 10 of 1 with lr=9.567237437267024e-06 and 1060 epochs
+2025-06-02_04-59-15
+[I 2025-06-02 04:59:15,299] Trial 2 finished with value: 0.0005892261979170144 and parameters: {'lr': 9.567237437267024e-06, 'epochs': 1060, 'batch_size': 190}. Best is trial 1 with value: 0.0005560918361879885.
+Training model with params: layers=7, units=[150, 150, 150, 150, 150, 150, 150], activation=sigmoid, optimizer=RectifiedAdam, lr=1.4629215638735794e-06, batchsize=1369
+Finish Trainingstep 10 of 1 with lr=1.4629215638735794e-06 and 3260 epochs
+2025-06-02_05-55-07
+[I 2025-06-02 05:55:07,217] Trial 3 finished with value: 0.000562943983823061 and parameters: {'lr': 1.4629215638735794e-06, 'epochs': 3260, 'batch_size': 1369}. Best is trial 1 with value: 0.0005560918361879885.
+Training model with params: layers=7, units=[150, 150, 150, 150, 150, 150, 150], activation=sigmoid, optimizer=RectifiedAdam, lr=3.8705347158201074e-05, batchsize=1964
+Finish Trainingstep 10 of 1 with lr=3.8705347158201074e-05 and 566 epochs
+2025-06-02_06-03-07
+[I 2025-06-02 06:03:07,977] Trial 4 finished with value: 0.0005718563334085047 and parameters: {'lr': 3.8705347158201074e-05, 'epochs': 566, 'batch_size': 1964}. Best is trial 1 with value: 0.0005560918361879885.
+Training model with params: layers=7, units=[150, 150, 150, 150, 150, 150, 150], activation=sigmoid, optimizer=RectifiedAdam, lr=2.3466241017657535e-05, batchsize=510
+Finish Trainingstep 10 of 1 with lr=2.3466241017657535e-05 and 10527 epochs
+2025-06-02_09-07-42
+[I 2025-06-02 09:07:42,423] Trial 5 finished with value: 0.0006431633955799043 and parameters: {'lr': 2.3466241017657535e-05, 'epochs': 10527, 'batch_size': 510}. Best is trial 1 with value: 0.0005560918361879885.
+Training model with params: layers=7, units=[150, 150, 150, 150, 150, 150, 150], activation=sigmoid, optimizer=RectifiedAdam, lr=5.115965464342302e-05, batchsize=23

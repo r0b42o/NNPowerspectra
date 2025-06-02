@@ -22,6 +22,10 @@ from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.activations import gelu
 import optuna
 from tensorflow.keras.layers import LeakyReLU, ELU
+import re
+import ast
+import optuna
+from optuna.samplers import TPESampler
 
 # Für spezielle Aktivierungen wie Swish, GELU
 try:
@@ -61,7 +65,7 @@ tf.random.set_seed(9721)
 # %%
 # Get test/training split
 
-N_total=70000 # Total samples
+N_total=50000 # Total samples
 f_val = 0.15 # We use 15% of samples as validation samples
 f_test=0.15 # We use 15% of samples as test samples 
 f_train=1-f_val-f_test
@@ -121,17 +125,10 @@ os.makedirs(data_dir, exist_ok=True)
 data_dir = "../Data/"
 
 # File path to the saved JSON file
-data_fn = [
-    f"{data_dir}GeneratedData_50000_2025-05-14_15-25-38.json",
-    f"{data_dir}GeneratedData_10000_2025-05-20_12-41-13_alpha0_01.json",
-    f"{data_dir}GeneratedData_10000_2025-05-20_12-56-40_Mprime1_5.json",
-]
+data_fn = f"{data_dir}GeneratedData_50000_2025-05-14_15-25-38.json"
 # read in data
-data_samples = []
-for dataset in data_fn:
-    with open(dataset, "r") as json_file:
-        current_samples = json.load(json_file)
-        data_samples.extend(current_samples)
+with open(data_fn, "r") as json_file:
+    data_samples = json.load(json_file)
 
 # Define keys needed for Galaxie-Matter
 target_keys = [ 
@@ -218,17 +215,10 @@ N_modes=len(lin_training_targets['modes'])
 # ## Read in related features
 
 # %%
-para_fn = [
-    f"{data_dir}Parameter_50000_2025-05-14_15-25-38.json",
-    f"{data_dir}Parameter_10000_2025-05-20_12-41-13_alpha0_01.json",
-    f"{data_dir}Parameter_10000_2025-05-20_12-56-40_Mprime1_5.json",
-]
+para_fn = f"{data_dir}Parameter_50000_2025-05-14_15-25-38.json"
 # Read in
-samples = []
-for paraset in para_fn:
-    with open(paraset, "r") as json_file:
-        current = json.load(json_file)
-        samples.extend(current)
+with open(para_fn, "r") as json_file:
+    samples = json.load(json_file)
 
 
 # Create numpy arrays for each of the parameter columns
@@ -727,26 +717,8 @@ plt.show()
 #learning_rates=[1e-2, 1e-3, 1e-4, 1e-5, 1e-6, 1e-7]
 #patience_values=[100, 100, 1000, 1000, 1000, 1000]
 #max_epochs=[1000, 1000, 10000, 10000, 10000, 10000]
-
-#load
-timestamp = '2025-05-19_17-04-21' 
-
-model = keras.models.load_model(
-    f'../NN_builds/NN_{timestamp}.keras',
-    compile=False
-)
-model.compile(optimizer=RectifiedAdam(), loss='mse', metrics=["mae"])
-
-
-# Layer-Infos extrahieren
-n_layers = len(model.layers)
-n_units = [layer.get_config().get('units') for layer in model.layers if 'units' in layer.get_config()]
-activations = [layer.get_config().get('activation') for layer in model.layers if 'activation' in layer.get_config()]
-activation = activations[0] if activations else "unknown"
-
-# Optimizer-Infos extrahieren
-optimizer_choice = type(model.optimizer).__name__ if model.optimizer else "uncompiled"
-
+patience_values=[100, 100, 1000]
+max_epochs=[1000, 1000, 10000]
 
 # %%
 #restructuring of the arrays
@@ -757,56 +729,129 @@ test_targets_rescaled = np.transpose(test_targets_rescaled, (1, 0, 2))
 
 # %%
 # Parametergrenzen definieren
-LEARNING_RATE_RANGE = (1e-6, 1e-4)
-BATCH_SIZE_RANGE = (16, 2048)
-EPOCHS=(100, 20000)
 
-# Modellfunktion (wie im Original)
+# Parametergrenzen definieren
+LAYER_RANGE = (1, 15)
+NEURON_RANGE = (16, 1024)
+LEARNING_RATE_RANGE = (1e-6, 1e-2)
+ACTIVATIONS = ["relu", "selu", "leaky_relu", "elu", "gelu", "swish", "sigmoid", "tanh"]
+OPTIMIZERS = ["adam", "sgd", "rmsprop", "AdamW", "RAdam"]
+BATCH_SIZE_RANGE = (16, 2048)
+
+log_file = "training_runs_2halo.txt"
+patience_values = [100, 100, 1000]
+max_epochs = [1000, 1000, 10000]
+
+# Dummy-Platzhalter (ersetzen mit echten Daten)
+# train_features_rescaled, train_targets_rescaled, val_features_rescaled, val_targets_rescaled
+# N_train, N_val müssen gesetzt sein
+
+def parse_training_log(file_path):
+    completed_trials = []
+    try:
+        with open(file_path, "r") as f:
+            lines = f.readlines()
+            for line in lines:
+                match = re.search(r"loss=(.*?), validation loss=(.*?), train_mae=(.*?), val_mae=(.*?), params=(\{.*\})", line)
+                if match:
+                    val_loss = float(match.group(2))
+                    params = ast.literal_eval(match.group(5))
+                    params['lr'] = float(params['lr'])
+                    completed_trials.append((params, val_loss))
+    except FileNotFoundError:
+        pass
+    return completed_trials
+
+class FileAwareSampler(TPESampler):
+    def __init__(self, log_file, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.log_file = log_file
+
+    def sample_relative(self, study, trial, search_space):
+        existing_trials = parse_training_log(self.log_file)
+        for _ in range(100):  # max 100 Versuche
+            params = super().sample_relative(study, trial, search_space)
+            already_tested = any(all(params.get(k) == v for k, v in t[0].items()) for t in existing_trials)
+            if not already_tested:
+                return params
+        raise RuntimeError("Keine neuen Parameterkombinationen gefunden.")
+
+def build_model(n_layers, n_units, activation, input_dim):
+    model = keras.Sequential()
+    model.add(layers.Input(shape=(input_dim,)))
+
+    for _ in range(n_layers):
+        if activation == "leaky_relu":
+            model.add(layers.Dense(n_units))
+            model.add(layers.LeakyReLU())
+        else:
+            model.add(layers.Dense(n_units, activation=activation))
+
+    model.add(Dense(50, activation='linear'))
+    return model
 
 def objective(trial):
-    all_training_loss=[]
-    all_validation_loss=[]
-    learning_rate = trial.suggest_float("lr", *LEARNING_RATE_RANGE, log=True)
-    epochs = trial.suggest_int("epochs", *EPOCHS)
-    batch_size = trial.suggest_int("batch_size", *BATCH_SIZE_RANGE)
-    # Modell bauen
-    tf.keras.backend.set_value(model.optimizer.learning_rate, learning_rate)
+    all_training_loss = []
+    all_validation_loss = []
 
+    n_layers = trial.suggest_int("n_layers", *LAYER_RANGE)
+    n_units = trial.suggest_int("n_units", *NEURON_RANGE)
+    activation = trial.suggest_categorical("activation", ACTIVATIONS)
+    learning_rate = trial.suggest_float("lr", *LEARNING_RATE_RANGE, log=True)
+    optimizer_choice = trial.suggest_categorical("optimizer", OPTIMIZERS)
+    batch_size = trial.suggest_int("batch_size", *BATCH_SIZE_RANGE)
+
+    model = build_model(n_layers, n_units, activation, train_features_rescaled.shape[1])
+
+    if optimizer_choice == "adam":
+        optimizer = keras.optimizers.Adam(learning_rate=learning_rate)
+    elif optimizer_choice == "sgd":
+        optimizer = keras.optimizers.SGD(learning_rate=learning_rate)
+    elif optimizer_choice == "rmsprop":
+        optimizer = keras.optimizers.RMSprop(learning_rate=learning_rate)
+    elif optimizer_choice == "AdamW":
+        from tensorflow_addons.optimizers import AdamW
+        optimizer = AdamW(learning_rate=learning_rate, weight_decay=1e-4)
+    elif optimizer_choice == "RAdam":
+        from tensorflow_addons.optimizers import RectifiedAdam
+        optimizer = RectifiedAdam(learning_rate=learning_rate)
+
+    model.compile(optimizer=optimizer, loss="mse", metrics=["mae"])
 
     print(f"Training model with params: layers={n_layers}, units={n_units}, activation={activation}, optimizer={optimizer_choice}, lr={learning_rate}, batchsize={batch_size}")
 
+    for i in range(len(max_epochs)):
+        earlystop = keras.callbacks.EarlyStopping(
+            monitor="val_loss", patience=patience_values[i], restore_best_weights=True, verbose=0
+        )
+        history = model.fit(
+            train_features_rescaled,
+            train_targets_rescaled.reshape(N_train, 150)[:, 50:100],
+            epochs=max_epochs[i],
+            verbose=0,
+            validation_data=(val_features_rescaled, val_targets_rescaled.reshape(N_val, 150)[:, 50:100]),
+            callbacks=[earlystop],
+            batch_size=batch_size
+        )
 
-    history = model.fit(
-        train_features_rescaled,
-        train_targets_rescaled.reshape((N_train, 150)),
-        epochs=epochs,
-        verbose=0,
-        validation_data=(val_features_rescaled, val_targets_rescaled.reshape((N_val, 150))),
-        batch_size=batch_size
-    )
+        all_training_loss.extend(history.history['loss'])
+        all_validation_loss.extend(history.history['val_loss'])
 
-    all_training_loss.extend(history.history['loss'])
-    all_validation_loss.extend(history.history['val_loss'])
+        tf.keras.backend.set_value(model.optimizer.learning_rate, learning_rate / (10 ** (i + 1)))
+        print(f"Finish Trainingstep {i+1} of {len(max_epochs)} with lr={learning_rate} and {max_epochs[i]} epochs")
 
-
-    print(f"Finish Trainingstep {i+1} of 1 with lr={learning_rate} and {epochs} epochs")
-
-
-
-
-    # loss auswerten
-    loss, train_mae = model.evaluate(train_features_rescaled, train_targets_rescaled.reshape((N_train, 150)), verbose=0)
-    val_loss, val_mae = model.evaluate(val_features_rescaled, val_targets_rescaled.reshape((N_val, 150)), verbose=0)
+    loss, train_mae = model.evaluate(train_features_rescaled, train_targets_rescaled.reshape(N_train, 150)[:, 50:100], verbose=0)
+    val_loss, val_mae = model.evaluate(val_features_rescaled, val_targets_rescaled.reshape(N_val, 150)[:, 50:100], verbose=0)
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     print(timestamp)
-    # Logfile schreiben
-    with open("training_runs_optimizedv2.txt", "a") as f:
+
+    with open(log_file, "a") as f:
         f.write(f"{timestamp} loss={loss:.6f}, validation loss={val_loss:.6f}, train_mae={train_mae:.6f}, val_mae={val_mae:.6f}, ")
         f.write(f"params={{'n_layers': {n_layers}, 'n_units': {n_units}, 'activation': '{activation}', 'optimizer': '{optimizer_choice}', 'lr': {learning_rate}, 'batchsize': {batch_size}}}\n")
 
     training_history = {
-    'loss': all_training_loss,
-    'val_loss': all_validation_loss
+        'loss': all_training_loss,
+        'val_loss': all_validation_loss
     }
 
     model.save(f'../NN_builds/NN_{timestamp}.keras')
@@ -814,12 +859,15 @@ def objective(trial):
     with open(f'../Traininghist/full_training_history_{timestamp}.json', 'w') as f:
         json.dump(training_history, f)
 
-    return val_loss  # Optuna minimiert diesen Wert
+    return val_loss
 
 # Studie starten
-study = optuna.create_study(direction="minimize")
-study.optimize(objective, n_trials=100)  # Erhöhe für genauere Suche
+random_seed = random.randint(0, 1000000)
+print('using random seed: ', random_seed)
+sampler = FileAwareSampler(log_file=log_file, seed=random_seed)
+study = optuna.create_study(direction="minimize", sampler=sampler)
+study.optimize(objective, n_trials=100)
 
-# Beste Kombination anzeigen
 print("Beste Parameter:")
 print(study.best_params)
+

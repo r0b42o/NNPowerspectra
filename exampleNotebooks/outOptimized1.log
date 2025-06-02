@@ -242,3 +242,15 @@ Finish Trainingstep 3 of 3 with lr=3.265817791666414e-05 and 10000 epochs
 Training model with params: layers=14, units=794, activation=swish, optimizer=adam, lr=2.3327908615397513e-05, batchsize=1272
 Finish Trainingstep 1 of 3 with lr=2.3327908615397513e-05 and 1000 epochs
 Finish Trainingstep 2 of 3 with lr=2.3327908615397513e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=2.3327908615397513e-05 and 10000 epochs
+2025-06-01_19-06-29
+[I 2025-06-01 19:06:30,416] Trial 33 finished with value: 0.0010020816698670387 and parameters: {'n_layers': 14, 'n_units': 794, 'activation': 'swish', 'lr': 2.3327908615397513e-05, 'optimizer': 'adam', 'batch_size': 1272}. Best is trial 15 with value: 0.0008755933959037066.
+Training model with params: layers=12, units=560, activation=swish, optimizer=adam, lr=4.366544195014426e-05, batchsize=1481
+Finish Trainingstep 1 of 3 with lr=4.366544195014426e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=4.366544195014426e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=4.366544195014426e-05 and 10000 epochs
+2025-06-02_07-42-03
+[I 2025-06-02 07:42:03,872] Trial 34 finished with value: 0.0009603257640264928 and parameters: {'n_layers': 12, 'n_units': 560, 'activation': 'swish', 'lr': 4.366544195014426e-05, 'optimizer': 'adam', 'batch_size': 1481}. Best is trial 15 with value: 0.0008755933959037066.
+Training model with params: layers=12, units=541, activation=swish, optimizer=adam, lr=4.9067365949056305e-05, batchsize=1530
+Finish Trainingstep 1 of 3 with lr=4.9067365949056305e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=4.9067365949056305e-05 and 1000 epochs

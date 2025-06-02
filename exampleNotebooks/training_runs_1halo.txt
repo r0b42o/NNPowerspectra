@@ -1,0 +1,4 @@
+2025-06-01_21-36-27 loss=0.000344, validation loss=0.003063, train_mae=0.008528, val_mae=0.011439, params={'n_layers': 5, 'n_units': 801, 'activation': 'selu', 'optimizer': 'RAdam', 'lr': 0.0043476974110815084, 'batchsize': 1582}
+2025-06-02_04-15-33 loss=0.004444, validation loss=0.007614, train_mae=0.028034, val_mae=0.029487, params={'n_layers': 11, 'n_units': 714, 'activation': 'elu', 'optimizer': 'RAdam', 'lr': 1.5129536789253706e-06, 'batchsize': 1986}
+2025-06-02_06-40-56 loss=0.009840, validation loss=0.010959, train_mae=0.046885, val_mae=0.047319, params={'n_layers': 15, 'n_units': 566, 'activation': 'gelu', 'optimizer': 'AdamW', 'lr': 4.5303534234449366e-05, 'batchsize': 1429}
+2025-06-02_07-16-22 loss=0.026651, validation loss=0.027938, train_mae=0.069479, val_mae=0.069501, params={'n_layers': 7, 'n_units': 521, 'activation': 'elu', 'optimizer': 'AdamW', 'lr': 7.786044845569986e-06, 'batchsize': 1556}

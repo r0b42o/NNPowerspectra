@@ -44,3 +44,16 @@ using random seed:  137225
 [I 2025-06-01 13:46:34,747] A new study created in memory with name: no-name-5de9bbd9-06ee-42ef-a89c-6a8aa9d0bde5
 Training model with params: layers=11, units=710, activation=swish, optimizer=sgd, lr=0.00038404535819173025, batchsize=79
 Finish Trainingstep 1 of 3 with lr=0.00038404535819173025 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.00038404535819173025 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.00038404535819173025 and 10000 epochs
+2025-06-02_00-35-16
+[I 2025-06-02 00:35:16,622] Trial 0 finished with value: 1.0255471467971802 and parameters: {'n_layers': 11, 'n_units': 710, 'activation': 'swish', 'lr': 0.00038404535819173025, 'optimizer': 'sgd', 'batch_size': 79}. Best is trial 0 with value: 1.0255471467971802.
+Training model with params: layers=7, units=361, activation=selu, optimizer=sgd, lr=0.005937135443270051, batchsize=920
+Finish Trainingstep 1 of 3 with lr=0.005937135443270051 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=0.005937135443270051 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=0.005937135443270051 and 10000 epochs
+2025-06-02_08-28-08
+[I 2025-06-02 08:28:08,466] Trial 1 finished with value: 0.012702688574790955 and parameters: {'n_layers': 7, 'n_units': 361, 'activation': 'selu', 'lr': 0.005937135443270051, 'optimizer': 'sgd', 'batch_size': 920}. Best is trial 1 with value: 0.012702688574790955.
+Training model with params: layers=6, units=574, activation=tanh, optimizer=adam, lr=1.254190420221076e-05, batchsize=1426
+Finish Trainingstep 1 of 3 with lr=1.254190420221076e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=1.254190420221076e-05 and 1000 epochs

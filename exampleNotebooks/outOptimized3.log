@@ -242,3 +242,14 @@ Finish Trainingstep 3 of 3 with lr=4.6341907531479676e-05 and 10000 epochs
 Training model with params: layers=14, units=411, activation=swish, optimizer=adam, lr=4.651161032783473e-05, batchsize=605
 Finish Trainingstep 1 of 3 with lr=4.651161032783473e-05 and 1000 epochs
 Finish Trainingstep 2 of 3 with lr=4.651161032783473e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=4.651161032783473e-05 and 10000 epochs
+2025-06-01_17-38-36
+[I 2025-06-01 17:38:36,519] Trial 33 finished with value: 0.0011204106267541647 and parameters: {'n_layers': 14, 'n_units': 411, 'activation': 'swish', 'lr': 4.651161032783473e-05, 'optimizer': 'adam', 'batch_size': 605}. Best is trial 32 with value: 0.001054559019394219.
+Training model with params: layers=14, units=369, activation=selu, optimizer=adam, lr=4.80359772517849e-05, batchsize=581
+Finish Trainingstep 1 of 3 with lr=4.80359772517849e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=4.80359772517849e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=4.80359772517849e-05 and 10000 epochs
+2025-06-02_08-25-53
+[I 2025-06-02 08:25:53,495] Trial 34 finished with value: 0.005165829788893461 and parameters: {'n_layers': 14, 'n_units': 369, 'activation': 'selu', 'lr': 4.80359772517849e-05, 'optimizer': 'adam', 'batch_size': 581}. Best is trial 32 with value: 0.001054559019394219.
+Training model with params: layers=15, units=320, activation=leaky_relu, optimizer=adam, lr=7.118584707501173e-05, batchsize=375
+Finish Trainingstep 1 of 3 with lr=7.118584707501173e-05 and 1000 epochs

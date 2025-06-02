@@ -302,3 +302,9 @@ Finish Trainingstep 3 of 3 with lr=2.8009994342270115e-05 and 10000 epochs
 Training model with params: layers=13, units=490, activation=gelu, optimizer=adam, lr=3.305284877794322e-05, batchsize=1681
 Finish Trainingstep 1 of 3 with lr=3.305284877794322e-05 and 1000 epochs
 Finish Trainingstep 2 of 3 with lr=3.305284877794322e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=3.305284877794322e-05 and 10000 epochs
+2025-06-02_01-25-01
+[I 2025-06-02 01:25:01,936] Trial 43 finished with value: 0.001043738448061049 and parameters: {'n_layers': 13, 'n_units': 490, 'activation': 'gelu', 'lr': 3.305284877794322e-05, 'optimizer': 'adam', 'batch_size': 1681}. Best is trial 39 with value: 0.0009353283676318824.
+Training model with params: layers=15, units=675, activation=tanh, optimizer=adam, lr=1.0110405896424886e-05, batchsize=1856
+Finish Trainingstep 1 of 3 with lr=1.0110405896424886e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=1.0110405896424886e-05 and 1000 epochs

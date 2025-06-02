@@ -332,3 +332,9 @@ Finish Trainingstep 3 of 3 with lr=1.735017987885875e-05 and 10000 epochs
 Training model with params: layers=9, units=888, activation=sigmoid, optimizer=adam, lr=1.4045439169170919e-05, batchsize=1130
 Finish Trainingstep 1 of 3 with lr=1.4045439169170919e-05 and 1000 epochs
 Finish Trainingstep 2 of 3 with lr=1.4045439169170919e-05 and 1000 epochs
+Finish Trainingstep 3 of 3 with lr=1.4045439169170919e-05 and 10000 epochs
+2025-06-01_17-54-19
+[I 2025-06-01 17:54:20,217] Trial 48 finished with value: 0.12441010773181915 and parameters: {'n_layers': 9, 'n_units': 888, 'activation': 'sigmoid', 'lr': 1.4045439169170919e-05, 'optimizer': 'adam', 'batch_size': 1130}. Best is trial 27 with value: 0.0009771148907020688.
+Training model with params: layers=11, units=750, activation=gelu, optimizer=rmsprop, lr=2.2191619852121875e-05, batchsize=1550
+Finish Trainingstep 1 of 3 with lr=2.2191619852121875e-05 and 1000 epochs
+Finish Trainingstep 2 of 3 with lr=2.2191619852121875e-05 and 1000 epochs
