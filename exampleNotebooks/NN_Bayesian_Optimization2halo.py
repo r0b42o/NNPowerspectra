@@ -57,10 +57,6 @@ except ImportError:
 device = 'gpu:0' if tf.test.is_gpu_available() else 'cpu'
 print('using', device, 'device \n')
 
-# %%
-# setting the seed for reproducibility
-np.random.seed(9721)
-tf.random.set_seed(9721)
 
 # %% [markdown]
 # ## Read in generated Targets
@@ -116,6 +112,9 @@ log_transformed_data = log_transform(targets_array)
 
 num_samples = len(clean_samples)
 indices = np.arange(num_samples)
+
+np.random.seed(9721)
+tf.random.set_seed(9721)
 np.random.shuffle(indices)
 
 training_indices = indices[:50000]
