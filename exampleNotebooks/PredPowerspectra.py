@@ -1,9 +1,7 @@
-# %% [markdown]
-# ## Notebook to analyse prediction performance of NN
 
 # %%
 # Define dataset, mode, NN model
-dataset = "10000_2025-06-10_23-11-15"
+parameter = "10000_2025-06-10_23-11-15"
 powerspectrum_mode = "ll"
 timestamp = '2025-08-27_20-13-31' #define model
 processing_vector = "1000000_2025-06-11_05-16-31" #processing vector connected to model
@@ -70,100 +68,29 @@ print('using', device, 'device \n')
 np.random.seed(9721)
 tf.random.set_seed(9721)
 
-# %%
-# 1. Speicherort und Dateiname
-
-data_dir = "../Data/"
-data_fn = f"{data_dir}GeneratedData_{dataset}.json"
-
-# 2. Relevante Keys für Galaxy-Matter
-
-target_keys = [f'Pk_{powerspectrum_mode}_1h', f'Pk_{powerspectrum_mode}_2h', f'Pk_{powerspectrum_mode}']
-lin_keys = ['Pk_lin']
-
-
-# 3. Daten einlesen und filtern
-
-clean_samples = []
-kept_indices = []
-with open(data_fn, "r") as json_file:
-    data_samples = json.load(json_file)
-    for i, sample in enumerate(data_samples):
-        if all(np.all(np.array(sample[key]) >= 0) for key in target_keys):
-            clean_samples.append(sample)
-            kept_indices.append(i)
-
-print(f"Anzahl der verbleibenden (bereinigten) Samples: {len(clean_samples)}")
-
-
-# Create numpy arrays for each of the Pk_* columns
-targets_array = {
-    key: np.array([sample[key] for sample in clean_samples])
-    for key in target_keys
-}
-
-
-# Logarithmic transformation of the data
-def log_transform(targets_array):
-    return {key: np.log(data) for key, data in targets_array.items()}
-
-#epsilon = 1e-8
-#for key in targets_array:
-    #targets_array[key] = np.where(targets_array[key] <= 0, epsilon, targets_array[key])
-
-# Calculate logarithms of the data
-log_transformed_data = log_transform(targets_array)
-
-# Nach clean_samples erstellen
-num_samples = len(clean_samples)
-indices = np.arange(num_samples)
-N_total = len(clean_samples)
-
-N_test = N_total
-
-print(f"Test: {num_samples}")
-
-# 8. Hilfsfunktion zum Splitten
-def split_data(array_dict, split_indices):
-    return np.array([data[split_indices] for data in array_dict.values()])
-
-# 9. Targets und Modes für Splits
-testing_targets = {
-    'modes': split_data(targets_array, indices),
-    'targets': split_data(log_transformed_data, indices)
-}
-
-# %%
-print('number of test targets:', len(testing_targets['modes'][:][0]), '. Should be', N_test)
-
-# %%
-N_modes=len(testing_targets['modes'])
-print(f"Shape of testing targets: {testing_targets['targets'].shape}. Should be ({N_modes}, {N_test}, 50)")
-
 # %% [markdown]
 # ## Read in related features
 
 # %%
 # Parameterdatei einlesen
-para_fn = f"{data_dir}Parameter_{dataset}.json"
+data_dir = "../Data/"
+para_fn = f"{data_dir}Parameter_{parameter}.json"
 
 with open(para_fn, "r") as json_file:
     all_parameter_samples = json.load(json_file)
 
-# Parameter entsprechend kept_indices filtern (kept_indices kommt vom Target-Filter)
-filtered_parameter_samples = [all_parameter_samples[i] for i in kept_indices]
-
 # Keys für Parameter
-feature_keys = ['Om_c', 'Om_b', 'h', 'sigma_8', 'n_s', 'alpha', 'sigma', 'Mth', 'Mprime', 'beta']
+feature_keys = ['Om_c', 'Om_b', 'h', 'sigma_8', 'n_s',
+                'alpha', 'sigma', 'Mth', 'Mprime', 'beta']
 
-# Gefilterte Parameter in NumPy-Arrays umwandeln
-feature_array = {
-    key: np.array([sample[key] for sample in filtered_parameter_samples])
-    for key in feature_keys
-}
+# Direkt in ein 2D-Array umwandeln: (Anzahl Samples) x (Anzahl Parameter)
+testing_features = np.array([
+    [sample[key] for key in feature_keys] 
+    for sample in all_parameter_samples
+])
 
-# Splitten mit denselben Indizes wie bei Targets
-testing_features = np.array([feature_array[key][indices] for key in feature_keys]).T
+N_total = len(testing_features)
+
 
 # %%
 log_indices = [7, 8]  # Ersetze mit deinen echten Indizes
@@ -173,14 +100,8 @@ testing_features[:, log_indices] = np.log10(testing_features[:, log_indices])
 print("input min/max:", testing_features.min(), testing_features.max())
 
 # %%
-print('number of test features:', len(testing_features), '. Should be', N_test)
+print('number of test features:', len(testing_features), '. Should be', N_total)
 
-# %% [markdown]
-# ## Renaming
-
-# %%
-# features
-test_targets=testing_targets['targets']
 
 # %% [markdown]
 # ## Rescaling
@@ -207,11 +128,6 @@ target_processing_vectors = {
     key: np.array(value) for key, value in loaded_vectors.items()
 }
 
-# --- Anwenden auf die Daten ---
-test_targets_rescaled  = preprocessing(test_targets, target_processing_vectors)
-
-# --- Check Shapes ---
-print("Test Rescaled Shape:", test_targets_rescaled.shape)
 
 # %%
 # --- Preprocessing & Postprocessing ---
@@ -231,18 +147,11 @@ with open(processing_in, "r") as json_file:
 # Umwandeln zurück in numpy Arrays
 feature_processing_vectors = {key: np.array(val) for key, val in loaded_vectors.items()}
 
-
 # --- Anwenden auf die Daten ---
 test_features_rescaled  = preprocessing(testing_features, feature_processing_vectors)
 
-
 # --- Check Shapes ---
 print("Test Rescaled Shape:", test_features_rescaled.shape)
-
-
-# %%
-#restructuring of the arrays
-test_targets_rescaled = np.transpose(test_targets_rescaled, (1, 0, 2))
 
 
 # %%
@@ -258,15 +167,11 @@ model.compile(optimizer=RectifiedAdam(), loss='mse')
 #predicted data
 emulated_testing = np.array(model.predict(test_features_rescaled, batch_size=N_total))
 
-pred_targets= emulated_testing.reshape(N_test, 3, 50).transpose(1, 0, 2)
+pred_targets= emulated_testing.reshape(N_total, 3, 50).transpose(1, 0, 2)
 postprocessed_pred_targets= postprocessing(pred_targets, target_processing_vectors)
 
 
 # %%
-import numpy as np
-import os
-import json
-from datetime import datetime
 
 # Die passenden Keys auswählen
 keys_map = {
