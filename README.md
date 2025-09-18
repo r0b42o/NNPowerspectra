@@ -85,6 +85,13 @@ In the following there is a brief explanation of example workflows this code can
 * Test your predicted powerspectra. (TestPredPowerspectra.ipynb)
 
 
+IMPORTANT: Note that a NN model is allways trained on a dataset with limited parameter priors and that the exact rescaling vectors used in training are needed for predicting. Otherwise new rescaling vectors can hold hidden information about the new data and could falsify the results.
+
+## Fileshare
+On the following link you can find the best NN models for GG, GM and MM my Bayesian Optimization produced.
+You can also find the Dataset (10^6 samples, size: 15GB) these models are trained on and the associated processing vectors.
+https://fileshare.uibk.ac.at/d/d0cbb73f649c4a98aa9e/
+
 <!-- LICENSE -->
 ## License
 
