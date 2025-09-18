@@ -56,10 +56,10 @@ This Notebook evaluates the accuracy of a NN model with the test data subset. It
 This Notebook compares different NN models accuracy whise. Showing the training processes, the realative errors of each 1halo 2halo and total for each model in log- and realspace. Furthermore it plots the parameterspace with the prediction error for each sample and each model for further analysis. It also compares the realtive errors to each other to determine which model performs best.
 
 ### NNNCalcLoss
-In progress
+In progress  (Notebook will get renamed and used to analyse the Bayesian Optimization progress of the training)
 
 ### NNPerformance
-In progress
+In progress (will be a Notebook to compare the speed of diffrent models)
 
 ### PredPowerspectra
 Emulator-Script to predict powerspectra given a parameterset, processing vectors, powerspectrum mode and NN model. The predicted powerspectra are then saved into a file as if they would be calculated with G3LHalo-Code.
