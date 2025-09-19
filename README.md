@@ -93,7 +93,7 @@ You can also find the dataset (10^6 samples, size: 15GB) these models are traine
 https://fileshare.uibk.ac.at/d/d0cbb73f649c4a98aa9e/
 
 The dataset has the following prior ranges:
-'''
+```
 # Define parameter intervals
 Mth_min = 1e10
 Mth_max = 1e15
@@ -109,7 +109,7 @@ param_intervals = {
     'Mprime': (Mth_min * 1, Mth_max * 100),
     'beta': (0.1, 2)
 }
-'''
+```
 
 <!-- LICENSE -->
 ## License
