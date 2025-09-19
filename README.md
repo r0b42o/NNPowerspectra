@@ -89,8 +89,27 @@ IMPORTANT: Note that a NN model is allways trained on a dataset with limited par
 
 ## Fileshare
 On the following link you can find the best NN models for GG, GM and MM my Bayesian Optimization produced.
-You can also find the Dataset (10^6 samples, size: 15GB) these models are trained on and the associated processing vectors.
+You can also find the dataset (10^6 samples, size: 15GB) these models are trained on and the associated processing vectors.
 https://fileshare.uibk.ac.at/d/d0cbb73f649c4a98aa9e/
+
+The dataset has the following prior ranges:
+'''
+# Define parameter intervals
+Mth_min = 1e10
+Mth_max = 1e15
+param_intervals = {
+    'Om_c': (0.1, 0.6),
+    'Om_b': (0.04, 0.06),
+    'h': (0.64, 0.82),
+    'sigma_8': (0.8, 1),
+    'n_s': (0.84, 1.1),
+    'alpha': (0, 1),
+    'sigma': (0.01, 1),
+    'Mth': (Mth_min, Mth_max),
+    'Mprime': (Mth_min * 1, Mth_max * 100),
+    'beta': (0.1, 2)
+}
+'''
 
 <!-- LICENSE -->
 ## License
