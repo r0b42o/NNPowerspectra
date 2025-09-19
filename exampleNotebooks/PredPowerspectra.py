@@ -2,8 +2,8 @@
 # %%
 # Define dataset, mode, NN model
 parameter = "10000_2025-06-10_23-11-15"
-powerspectrum_mode = "ll"
-timestamp = '2025-08-27_20-13-31' #define model
+powerspectrum_mode = "ss"
+timestamp = '2025-07-20_20-46-07' #define model
 processing_vector = "1000000_2025-06-11_05-16-31" #processing vector connected to model
 
 
